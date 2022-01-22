@@ -1,3 +1,50 @@
+.parallax-wrapper {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective: 1000px;
+
+  .parallax-group {
+    position: relative;
+    height: 200vh;
+    transform-style: preserve-3d;
+
+    .parallax-layer {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .trees-layer {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .base-layer {
+      display: block;
+      transform: translateZ(-1000px);
+      background-color: rgba(151, 151, 151, 0.25);
+    }
+
+    .mid-layer {
+      display: block;
+      transform: translateZ(-500px);
+      background-color: rgba(151, 151, 151, 0.25);
+    }
+
+    .top-layer {
+      display: block;
+      transform: translateZ(0px);
+      // background-color: rgba(151, 151, 151, 0.25);
+    }
+
+  }
+
+}
+
+
 section {
   width: calc(100vw);
   height: calc(100vh);
