@@ -1,3 +1,7 @@
+@import "../../../../styles.scss";
+
+$presentation: $base;
+
 :host {
   display: flex;
   width: 100%;
@@ -8,13 +12,14 @@
 
 .logo {
   position: absolute;
-  right: 100px;
-  top:60px;
-  width: calc(2250px / 6);
-  height: calc(2000px / 6);
-  z-index: 1;
+  right: 180px;
+  top: 80px;
+  width: calc(2250px / 7);
+  height: calc(2000px / 7);
+  z-index: $under + $presentation;
 }
 
 .presentation {
-  z-index: 2;
+  z-index: $presentation;
+  width: 70%;
 }

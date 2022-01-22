@@ -8,34 +8,62 @@ $primary-font-family: 'Source Code Pro', monospace;
     box-sizing: border-box;
 }
 
-/** Background Colors **/
+html {
+    scrollbar-color: #50a082 #faf0be;
+}
+
+body {
+    background-color: #faf0be;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-family: $primary-font-family;
+
+    /* Scrollbar */
+    &::-webkit-scrollbar {
+        width: 12px;
+        height: 12px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background-color: #faf0be;
+    }
+
+    /* Thumb */
+    &::-webkit-scrollbar-thumb {
+        border: 2px solid #faf0be;
+        background-color: #50a082;
+        border-radius: 6px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: #336653;
+    }
+}
+
 
 /** Text Colors **/
 
-/** Background Additional Colors **/
+/** Background Colors **/
 
-.default    { background-color: #FCD239 }
-.success    { background-color: #7DB63D; }
-.pending    { background-color: #8799D9 }
-.wait       { background-color: #8799D9 }
+/** Additional Text Colors **/
+
+.text-default    { color: #faf0be }
+.text-success    { color: #7DB63D }
+.text-wait       { color: #50a082 }
+.text-fail       { color: #FF6A97 }
+.text-danger     { color: #ff0000 }
+.text-dark       { color: #262626 }
+
+/** Additional Background Colors **/
+
+.default    { background-color: #faf0be }
+.success    { background-color: #7DB63D }
+.wait       { background-color: #50a082 }
 .fail       { background-color: #FF6A97 }
 .danger     { background-color: #ff0000 }
 .dark       { background-color: #262626 }
-
-/** Background Grey Colors **/
-
-.black      { background-color: #000000 }
-.white      { background-color: #FFFFFF }
-.grey-50    { background-color: #FBFBFB }
-.grey-100   { background-color: #F6F6F6 }
-.grey-200   { background-color: #F1F1F1 }
-.grey-300   { background-color: #E5E5E5 }
-.grey-400   { background-color: #C3C3C3 }
-.grey-500   { background-color: #A5A5A5 }
-.grey-600   { background-color: #7B7B7B }
-.grey-700   { background-color: #676767 }
-.grey-800   { background-color: #474747 }
-.grey-900   { background-color: #262626 }
 
 /** Text Grey Color **/
 
@@ -52,37 +80,57 @@ $primary-font-family: 'Source Code Pro', monospace;
 .text-grey-800  { color: #474747 }
 .text-grey-900  { color: #262626 }
 
+/** Background Grey Colors **/
+
+.black      { background-color: #000000 }
+.white      { background-color: #FFFFFF }
+.grey-50    { background-color: #FBFBFB }
+.grey-100   { background-color: #F6F6F6 }
+.grey-200   { background-color: #F1F1F1 }
+.grey-300   { background-color: #E5E5E5 }
+.grey-400   { background-color: #C3C3C3 }
+.grey-500   { background-color: #A5A5A5 }
+.grey-600   { background-color: #7B7B7B }
+.grey-700   { background-color: #676767 }
+.grey-800   { background-color: #474747 }
+.grey-900   { background-color: #262626 }
+
 /* Typographies */
 
-.t1-96{ font-family: $primary-font-family; font-size:96px; ; font-weight: normal; }
-.t1-96-bold{ font-family: $primary-font-family; font-size:96px; font-weight: bold; }
+.t1-96          { font-size:96px; ; font-weight: normal; }
+.t1-96-bold     { font-size:96px; font-weight: bold; }
 
-.t1-72{ font-family: $primary-font-family; font-size:72px; ; font-weight: normal; }
-.t1-72-bold{ font-family: $primary-font-family; font-size:72px; font-weight: bold; }
+.t1-72          { font-size:72px; ; font-weight: normal; }
+.t1-72-bold     { font-size:72px; font-weight: bold; }
 
-.t1-64{ font-family: $primary-font-family; font-size:64px; ; font-weight: normal; }
-.t1-64-bold{ font-family: $primary-font-family; font-size:64px; font-weight: bold; }
+.t1-64          { font-size:64px; ; font-weight: normal; }
+.t1-64-bold     { font-size:64px; font-weight: bold; }
 
-.t1-48{ font-family: $primary-font-family; font-size:48px;}
-.t1-48-bold{ font-family: $primary-font-family; font-size:48px; font-weight: bold; }
+.t1-48          { font-size:48px;}
+.t1-48-bold     { font-size:48px; font-weight: bold; }
 
-.t1-42{ font-family: $primary-font-family; font-size:42px; ; font-weight: normal; }
-.t1-42-bold{ font-family: $primary-font-family; font-size:42px; font-weight: bold; }
+.t1-42          { font-size:42px; ; font-weight: normal; }
+.t1-42-bold     { font-size:42px; font-weight: bold; }
 
-.t1-36{ font-family: $primary-font-family; font-size:36px; ; font-weight: normal; }
-.t1-36-bold{ font-family: $primary-font-family; font-size:36px; font-weight: bold; }
+.t1-36          { font-size:36px; ; font-weight: normal; }
+.t1-36-bold     { font-size:36px; font-weight: bold; }
 
-.t1-24{ font-family: $primary-font-family; font-size:24px; ; font-weight: normal; }
-.t1-24-bold{ font-family: $primary-font-family; font-size:24px; font-weight: bold; }
+.t1-24          { font-size:24px; ; font-weight: normal; }
+.t1-24-bold     { font-size:24px; font-weight: bold; }
 
-.t1-18{ font-family: $primary-font-family; font-size:18px; font-weight: normal}
-.t1-18-bold{ font-family: $primary-font-family; font-size:18px; font-weight: bold; }
+.t1-18          { font-size:18px; font-weight: normal}
+.t1-18-bold     { font-size:18px; font-weight: bold; }
 
-.t1-16{ font-family: $primary-font-family; font-size:16px; ; font-weight: normal; }
-.t1-16-bold{ font-family: $primary-font-family; font-size:16px; font-weight: bold; }
+.t1-16          { font-size:16px; ; font-weight: normal; }
+.t1-16-bold     { font-size:16px; font-weight: bold; }
 
-.t1-14{ font-family: $primary-font-family; font-size:14px; ; font-weight: normal; }
-.t1-14-bold{ font-family: $primary-font-family; font-size:14px; font-weight: bold; }
+.t1-14          { font-size:14px; ; font-weight: normal; }
+.t1-14-bold     { font-size:14px; font-weight: bold; }
 
-.t1-12{ font-family: $primary-font-family; font-size:12px; ; font-weight: normal; }
-.t1-12-bold{ font-family: $primary-font-family; font-size:12px; font-weight: bold; }
+.t1-12          { font-size:12px; ; font-weight: normal; }
+.t1-12-bold     { font-size:12px; font-weight: bold; }
+
+/** z-index **/
+$base: 1000;
+$above: 1;
+$under: -1;
