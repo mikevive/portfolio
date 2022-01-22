@@ -1,0 +1,208 @@
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('SourceCodePro-Black.eot');
+    src: url('SourceCodePro-Black.eot?#iefix') format('embedded-opentype'),
+        url('SourceCodePro-Black.woff2') format('woff2'),
+        url('SourceCodePro-Black.woff') format('woff'),
+        url('SourceCodePro-Black.ttf') format('truetype'),
+        url('SourceCodePro-Black.svg#SourceCodePro-Black') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('SourceCodePro-Bold.eot');
+    src: url('SourceCodePro-Bold.eot?#iefix') format('embedded-opentype'),
+        url('SourceCodePro-Bold.woff2') format('woff2'),
+        url('SourceCodePro-Bold.woff') format('woff'),
+        url('SourceCodePro-Bold.ttf') format('truetype'),
+        url('SourceCodePro-Bold.svg#SourceCodePro-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('SourceCodePro-ExtraBold.eot');
+    src: url('SourceCodePro-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('SourceCodePro-ExtraBold.woff2') format('woff2'),
+        url('SourceCodePro-ExtraBold.woff') format('woff'),
+        url('SourceCodePro-ExtraBold.ttf') format('truetype'),
+        url('SourceCodePro-ExtraBold.svg#SourceCodePro-ExtraBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('SourceCodePro-BlackItalic.eot');
+    src: url('SourceCodePro-BlackItalic.eot?#iefix') format('embedded-opentype'),
+        url('SourceCodePro-BlackItalic.woff2') format('woff2'),
+        url('SourceCodePro-BlackItalic.woff') format('woff'),
+        url('SourceCodePro-BlackItalic.ttf') format('truetype'),
+        url('SourceCodePro-BlackItalic.svg#SourceCodePro-BlackItalic') format('svg');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('SourceCodePro-BoldItalic.eot');
+    src: url('SourceCodePro-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('SourceCodePro-BoldItalic.woff2') format('woff2'),
+        url('SourceCodePro-BoldItalic.woff') format('woff'),
+        url('SourceCodePro-BoldItalic.ttf') format('truetype'),
+        url('SourceCodePro-BoldItalic.svg#SourceCodePro-BoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('SourceCodePro-ExtraBoldItalic.eot');
+    src: url('SourceCodePro-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('SourceCodePro-ExtraBoldItalic.woff2') format('woff2'),
+        url('SourceCodePro-ExtraBoldItalic.woff') format('woff'),
+        url('SourceCodePro-ExtraBoldItalic.ttf') format('truetype'),
+        url('SourceCodePro-ExtraBoldItalic.svg#SourceCodePro-ExtraBoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('SourceCodePro-ExtraLight.eot');
+    src: url('SourceCodePro-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('SourceCodePro-ExtraLight.woff2') format('woff2'),
+        url('SourceCodePro-ExtraLight.woff') format('woff'),
+        url('SourceCodePro-ExtraLight.ttf') format('truetype'),
+        url('SourceCodePro-ExtraLight.svg#SourceCodePro-ExtraLight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('SourceCodePro-Light.eot');
+    src: url('SourceCodePro-Light.eot?#iefix') format('embedded-opentype'),
+        url('SourceCodePro-Light.woff2') format('woff2'),
+        url('SourceCodePro-Light.woff') format('woff'),
+        url('SourceCodePro-Light.ttf') format('truetype'),
+        url('SourceCodePro-Light.svg#SourceCodePro-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('SourceCodePro-LightItalic.eot');
+    src: url('SourceCodePro-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('SourceCodePro-LightItalic.woff2') format('woff2'),
+        url('SourceCodePro-LightItalic.woff') format('woff'),
+        url('SourceCodePro-LightItalic.ttf') format('truetype'),
+        url('SourceCodePro-LightItalic.svg#SourceCodePro-LightItalic') format('svg');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('SourceCodePro-Italic.eot');
+    src: url('SourceCodePro-Italic.eot?#iefix') format('embedded-opentype'),
+        url('SourceCodePro-Italic.woff2') format('woff2'),
+        url('SourceCodePro-Italic.woff') format('woff'),
+        url('SourceCodePro-Italic.ttf') format('truetype'),
+        url('SourceCodePro-Italic.svg#SourceCodePro-Italic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('SourceCodePro-ExtraLightItalic.eot');
+    src: url('SourceCodePro-ExtraLightItalic.eot?#iefix') format('embedded-opentype'),
+        url('SourceCodePro-ExtraLightItalic.woff2') format('woff2'),
+        url('SourceCodePro-ExtraLightItalic.woff') format('woff'),
+        url('SourceCodePro-ExtraLightItalic.ttf') format('truetype'),
+        url('SourceCodePro-ExtraLightItalic.svg#SourceCodePro-ExtraLightItalic') format('svg');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('SourceCodePro-MediumItalic.eot');
+    src: url('SourceCodePro-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('SourceCodePro-MediumItalic.woff2') format('woff2'),
+        url('SourceCodePro-MediumItalic.woff') format('woff'),
+        url('SourceCodePro-MediumItalic.ttf') format('truetype'),
+        url('SourceCodePro-MediumItalic.svg#SourceCodePro-MediumItalic') format('svg');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('SourceCodePro-Medium.eot');
+    src: url('SourceCodePro-Medium.eot?#iefix') format('embedded-opentype'),
+        url('SourceCodePro-Medium.woff2') format('woff2'),
+        url('SourceCodePro-Medium.woff') format('woff'),
+        url('SourceCodePro-Medium.ttf') format('truetype'),
+        url('SourceCodePro-Medium.svg#SourceCodePro-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('SourceCodePro-Regular.eot');
+    src: url('SourceCodePro-Regular.eot?#iefix') format('embedded-opentype'),
+        url('SourceCodePro-Regular.woff2') format('woff2'),
+        url('SourceCodePro-Regular.woff') format('woff'),
+        url('SourceCodePro-Regular.ttf') format('truetype'),
+        url('SourceCodePro-Regular.svg#SourceCodePro-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('SourceCodePro-SemiBold.eot');
+    src: url('SourceCodePro-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('SourceCodePro-SemiBold.woff2') format('woff2'),
+        url('SourceCodePro-SemiBold.woff') format('woff'),
+        url('SourceCodePro-SemiBold.ttf') format('truetype'),
+        url('SourceCodePro-SemiBold.svg#SourceCodePro-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('SourceCodePro-SemiBoldItalic.eot');
+    src: url('SourceCodePro-SemiBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('SourceCodePro-SemiBoldItalic.woff2') format('woff2'),
+        url('SourceCodePro-SemiBoldItalic.woff') format('woff'),
+        url('SourceCodePro-SemiBoldItalic.ttf') format('truetype'),
+        url('SourceCodePro-SemiBoldItalic.svg#SourceCodePro-SemiBoldItalic') format('svg');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
