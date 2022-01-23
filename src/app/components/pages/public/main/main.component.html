@@ -41,11 +41,12 @@
       <app-tree [position]="'top'"></app-tree>
 
       <section>
-        <article [ngStyle]="{'height.vh': articlesHeight[0]}">
+        <article [ngStyle]="{'height.vh': getArticleHeight(1)}">
           <app-presentation></app-presentation>
+          <app-quote></app-quote>
         </article>
-        <article [ngStyle]="{'height.vh': articlesHeight[1]}">
-
+        <article [ngStyle]="{'height.vh': getArticleHeight(2)}">
+          <app-quote></app-quote>
         </article>
       </section>
 

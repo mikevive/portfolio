@@ -6,21 +6,34 @@ import { Injectable } from '@angular/core';
 
 export class TreeService {
 
-  treePositions: any[] = []
+  private restrictedAreas: any[] = [];
+
+  private treePositions: any[] = [];
 
   constructor() { }
 
+  // TODO: Convert to DTO
   register(top: number, left: number, position: string): boolean {
 
-    const collition = this.treePositions.find((treePosition, index) => {
+    const treeCollition = this.treePositions.find((treePosition) => {
       return treePosition.position === position &&
-        treePosition.top  + 150  > top  &&
+        treePosition.top  + 200  > top  &&
         treePosition.top  - 100   < top  &&
-        treePosition.left + 150  > left &&
+        treePosition.left + 200  > left &&
         treePosition.left - 100   < left ;
     });
 
-    if(collition) return false;
+    if(treeCollition) return false;
+
+    const restrictedAreaCollition = this.restrictedAreas.find((restrictArea) => {
+      return position === 'top' &&
+        restrictArea.top - 100  < top  &&
+        restrictArea.bottom  > top  &&
+        restrictArea.left - 100 < left &&
+        restrictArea.right > left ;
+    });
+
+    if(restrictedAreaCollition) return false;
 
     this.treePositions.push({
       top: top,
@@ -28,7 +41,17 @@ export class TreeService {
       position: position
     });
 
-    return true
+    return true;
+  }
+
+  // TODO: Convert to DTO
+  addRestrictedArea(top: number, bottom: number, left: number, right: number): void{
+    this.restrictedAreas.push({
+      top: top,
+      bottom: bottom,
+      left: left,
+      right: right
+    });
   }
 
 }
