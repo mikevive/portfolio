@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { TreeService } from './tree.service';
 
 @Component({
   selector: 'app-tree',
@@ -18,14 +19,27 @@ export class TreeComponent implements OnInit {
     top: 1
   }
 
-  constructor(public elementRef: ElementRef) { }
+  constructor(
+    public elementRef: ElementRef,
+    public treeService: TreeService
+    ) { }
 
   ngOnInit(): void {
     const parentRef = this.elementRef.nativeElement.parentElement;
     const parentWidth: number = parentRef.clientWidth;
     const parentHeight: number = parentRef.clientHeight;
-    this.left = Math.floor(Math.random() * parentWidth);
-    this.top = Math.floor(Math.random() * parentHeight);
     this.opacity = this.opacities[this.position];
+
+    let isRegister: boolean;
+
+    do{
+      let top: number= Math.floor(Math.random() * (parentHeight - 100)) + 50;
+      let left: number = Math.floor(Math.random() * parentWidth - 100) + 50;
+      isRegister = this.treeService.register(top, left, this.position)
+      this.top = top;
+      this.left = left;
+    }
+    while(!isRegister)
   }
+
 }
