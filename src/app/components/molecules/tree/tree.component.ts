@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-tree',
@@ -12,19 +12,20 @@ export class TreeComponent implements OnInit {
   left: number;
   opacity: number;
 
-  opacities: any = {
+  private opacities: any = {
     base: 0.2,
     mid: 0.5,
     top: 1
   }
 
-  constructor() {
-    this.top = Math.floor(Math.random() * 5 * window.innerHeight);
-    this.left = Math.floor(Math.random() * window.innerWidth);
-  }
+  constructor(public elementRef: ElementRef) { }
 
   ngOnInit(): void {
-    this.opacity = this.opacities[this.position]
+    const parentRef = this.elementRef.nativeElement.parentElement;
+    const parentWidth: number = parentRef.clientWidth;
+    const parentHeight: number = parentRef.clientHeight;
+    this.left = Math.floor(Math.random() * parentWidth);
+    this.top = Math.floor(Math.random() * parentHeight);
+    this.opacity = this.opacities[this.position];
   }
-
 }
