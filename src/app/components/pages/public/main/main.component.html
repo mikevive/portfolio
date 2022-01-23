@@ -1,6 +1,6 @@
 <div class="parallax-wrapper">
 
-  <div class="parallax-group">
+  <div class="parallax-group" #parallaxGroup>
 
     <div class="parallax-layer base-layer">
       <app-tree [position]="'base'"></app-tree>
@@ -28,7 +28,7 @@
       <app-tree [position]="'mid'"></app-tree>
     </div>
 
-    <div class="parallax-layer top-layer" #topLayer>
+    <div class="parallax-layer top-layer">
       <app-tree [position]="'top'"></app-tree>
       <app-tree [position]="'top'"></app-tree>
       <app-tree [position]="'top'"></app-tree>
@@ -41,19 +41,10 @@
       <app-tree [position]="'top'"></app-tree>
 
       <section>
-        <article>
+        <article [ngStyle]="{'height.vh': articlesHeight[0]}">
           <app-presentation></app-presentation>
         </article>
-        <article>
-
-        </article>
-        <article>
-
-        </article>
-        <article>
-
-        </article>
-        <article>
+        <article [ngStyle]="{'height.vh': articlesHeight[1]}">
 
         </article>
       </section>
