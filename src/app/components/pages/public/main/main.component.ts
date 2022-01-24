@@ -24,7 +24,7 @@ export class MainComponent implements OnInit {
     const height = this.getArticlesHeight();
     this.parallaxGroup.nativeElement.style.height = `${height}vh`;
     this.articlesHeight.forEach((articleHeight, index) => {
-      this.restrictArea(index + 1, this.articlesHeight[index])
+      this.restrictArea(index + 1, articleHeight)
     })
   }
 

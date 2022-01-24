@@ -12,23 +12,21 @@
 
     .parallax-layer {
       position: absolute;
+      // background-color: rgba(151, 151, 151, 0.25);
     }
 
     .base-layer {
       inset: -50%;
       transform: translateZ(-1000px);
-      background-color: rgba(151, 151, 151, 0.25);
     }
 
     .mid-layer {
       inset: -25%;
       transform: translateZ(-500px);
-      background-color: rgba(151, 151, 151, 0.25);
     }
 
     .top-layer {
       inset: 0;
-      background-color: rgba(151, 151, 151, 0.25);
 
       section{
         position: absolute;
