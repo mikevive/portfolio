@@ -2,6 +2,31 @@
   position: absolute;
   width: 100px;
   height: 100px;
-  background-color: green;
   border-radius: 50px;
+  transition: height 0.1s, top 0.1s;
 }
+
+.real {
+  background-color: green;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.green {
+  background-color: lightgreen;
+}
+
+.blur {
+  -webkit-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -o-filter: blur(1px);
+  -ms-filter: blur(1px);
+  filter: blur(1px);
+}
+

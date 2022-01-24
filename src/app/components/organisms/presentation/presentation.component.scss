@@ -19,7 +19,42 @@ $presentation: $base;
   z-index: $under + $presentation;
 }
 
+.blur {
+  opacity: 0.4;
+}
+
+.green {
+  filter: brightness(140%) saturate(200) hue-rotate(30deg) blur(1px);
+  transform: translateX(-1px) translateY(1px)
+}
+
+.blue {
+  filter: brightness(50%) saturate(200) hue-rotate(120deg) blur(1px);
+  transform: translateX(-2px) translateY(-2px)
+}
+
+.red {
+  filter: brightness(100%) saturate(100) hue-rotate(250deg) blur(1px);
+  transform: translateX(2px) translateY(2px)
+}
+
+.green-text {
+  color: lightgreen;
+  transform: translateX(-1px) translateY(1px)
+}
+
+.blue-text {
+  color: blue;
+  transform: translateX(-1px) translateY(-1px)
+}
+
+.red-text {
+  color: red;
+  transform: translateX(1px) translateY(1px)
+}
+
 .presentation {
+  position: absolute;
   z-index: $presentation;
   width: 70%;
 }
