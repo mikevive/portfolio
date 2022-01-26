@@ -14,8 +14,8 @@ $presentation: $base;
   position: absolute;
   right: 180px;
   top: 80px;
-  width: calc(2250px / 7);
-  height: calc(2000px / 7);
+  width: 321px;
+  height: 285px;
   z-index: $under + $presentation;
 }
 
@@ -62,3 +62,146 @@ $presentation: $base;
   z-index: $presentation;
   width: 70%;
 }
+
+/* Portrait */
+
+@media (orientation:portrait) {
+
+}
+
+/* Phone Portrait */
+
+@media (orientation:portrait) and (max-width: 575px) {
+  h2 { font-size: 24px !important; }
+  h1 { font-size: 48px !important; }
+  .logo {
+    left: 65px;
+    top: 100px;
+    width: 107px;
+    height: 95px;
+  }
+}
+
+@media (orientation:portrait) and (min-width: 576px) {
+  h2 { font-size: 36px !important; }
+  h1 { font-size: 64px !important; }
+  .logo {
+    left: 65px;
+    top: 120px;
+    width: 160px;
+    height: 143px;
+  }
+}
+
+/* Laptop/Tablet Portrait */
+
+@media (orientation:portrait) and (min-width: 768px) {
+  h2 { font-size: 36px !important; }
+  h1 { font-size: 96px !important; }
+  .logo {
+    left: 120px;
+    top: 120px;
+    width: 257px;
+    height: 228px;
+  }
+}
+
+@media (orientation:portrait) and (min-width: 992px) {
+  h2 { font-size: 42px !important; }
+  .logo {
+    left: 140px;
+    top: 120px;
+    width: 321px;
+    height: 285px;
+  }
+}
+
+@media (orientation:portrait) and (min-width: 1200px) {
+
+}
+
+/* Landscape */
+
+@media (orientation:landscape) { }
+
+/* Phone Landscape */
+
+@media (orientation:landscape) and (max-height: 419px) {
+  h2 { font-size: 24px !important; }
+  h1 { font-size: 48px !important; }
+  .logo {
+    right: 100px;
+    top: 80px;
+    width: 107px;
+    height: 95px;
+  }
+}
+
+/* Laptop/Tablet Landscape */
+
+@media (orientation:landscape) and (min-height: 420px) {
+  h2 { font-size: 24px !important; }
+  h1 { font-size: 48px !important; }
+  .logo {
+    right: 100px;
+    top: 80px;
+    width: 107px;
+    height: 95px;
+  }
+}
+
+@media (orientation:landscape) and (min-height: 420px) and (max-width: 575px) {
+  h2 { font-size: 24px !important; }
+  h1 { font-size: 48px !important; }
+  .logo {
+    right: 100px;
+    top: 80px;
+    width: 107px;
+    height: 95px;
+  }
+}
+
+@media (orientation:landscape) and (min-height: 420px) and (min-width: 576px) {
+  h2 { font-size: 24px !important; }
+  h1 { font-size: 48px !important; }
+  .logo {
+    right: 100px;
+    top: 80px;
+    width: 160px;
+    height: 143px;
+  }
+}
+
+@media (orientation:landscape) and (min-height: 420px) and (min-width: 768px) {
+  h2 { font-size: 24px !important; }
+  h1 { font-size: 48px !important; }
+  .logo {
+    right: 100px;
+    top: 80px;
+    width: 257px;
+    height: 228px;
+  }
+}
+
+@media (orientation:landscape) and (min-height: 420px) and (min-width: 992px) {
+  h2 { font-size: 36px !important; }
+  h1 { font-size: 96px !important; }
+  .logo {
+    right: 180px;
+    top: 80px;
+    width: 321px;
+    height: 285px;
+  }
+}
+
+@media (orientation:landscape) and (min-height: 420px) and (min-width: 1200px) {
+  h2 { font-size: 36px !important; }
+  h1 { font-size: 96px !important; }
+  .logo {
+    right: 180px;
+    top: 80px;
+    width: 321px;
+    height: 285px;
+  }
+}
+

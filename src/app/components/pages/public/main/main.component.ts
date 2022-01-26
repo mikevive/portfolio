@@ -11,7 +11,7 @@ export class MainComponent implements OnInit {
   @ViewChild('parallaxWrapper', { static: true }) parallaxWrapper: ElementRef;
   @ViewChild('parallaxGroup', { static: true }) parallaxGroup: ElementRef;
 
-  private VIEWPORT_HEIGHT_VH = 100;
+  private INNER_HEIGHT = window.innerHeight;
 
   public articlesHeight: number[] = [];
   public startScrollTop: number = 0;
@@ -22,43 +22,53 @@ export class MainComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.addArticle(1);
     this.addArticle(2);
     const height = this.getArticlesHeight();
-    this.parallaxGroup.nativeElement.style.height = `${height}vh`;
+    this.parallaxGroup.nativeElement.style.height = `${height}px`;
     this.articlesHeight.forEach((articleHeight, index) => {
       this.restrictArea(index + 1, articleHeight)
     })
 
-    const userAgent = navigator.userAgent;
+    this.parallaxWrapper.nativeElement.addEventListener('scroll', this.scrollListener.bind(this))
 
-    if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(userAgent)) {
-      this.parallaxWrapper.nativeElement.addEventListener(
-        'scroll',
-        () => {
-          const currentTime = Date.now();
-          if (currentTime - this.startScrollTime < 50) return
-
-          this.startScrollTime = currentTime;
-          const endScrollTop = this.parallaxWrapper.nativeElement.scrollTop;
-          const scrollDifference = this.startScrollTop - endScrollTop;
-          this.treeService.setMotionBlur(scrollDifference);
-          this.startScrollTop = endScrollTop;
-          this.startScrollTime = Date.now();
-
-          setTimeout(() => {
-            const currentTime = Date.now();
-            const timeDifference = currentTime - this.startScrollTime;
-            if (timeDifference >= 100) this.treeService.setMotionBlur(0);
-          }, 100)
-        }
-      )
-    }
+    window.addEventListener('resize', () => {
+      this.INNER_HEIGHT = window.innerHeight;
+      this.parallaxGroup.nativeElement
+      this.updateArticleHeight(1,1);
+      this.updateArticleHeight(2,2);
+      const height = this.getArticlesHeight();
+      this.parallaxGroup.nativeElement.style.height = `${height}px`;
+    });
 
   }
 
+  scrollListener(): void {
+    const userAgent = navigator.userAgent;
+    if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(userAgent)) {
+      const currentTime = Date.now();
+      if (currentTime - this.startScrollTime < 50) return
+
+      this.startScrollTime = currentTime;
+      const endScrollTop = this.parallaxWrapper.nativeElement.scrollTop;
+      const scrollDifference = this.startScrollTop - endScrollTop;
+
+      this.treeService.setMotionBlur(scrollDifference);
+
+      this.startScrollTop = endScrollTop;
+      this.startScrollTime = Date.now();
+
+      setTimeout(() => {
+        const currentTime = Date.now();
+        const timeDifference = currentTime - this.startScrollTime;
+        if (timeDifference >= 100) this.treeService.setMotionBlur(0);
+      }, 100)
+    }
+  }
+
   addArticle(scaleY: number): void {
-    this.articlesHeight.push(this.VIEWPORT_HEIGHT_VH * scaleY);
+    this.articlesHeight.push(this.INNER_HEIGHT * scaleY);
   }
 
   getArticlesHeight(position: number = this.articlesHeight.length): number {
@@ -70,16 +80,20 @@ export class MainComponent implements OnInit {
     return this.articlesHeight[position - 1]
   }
 
+  updateArticleHeight(position: number, scaleY: number): void {
+    this.articlesHeight[position - 1] = this.INNER_HEIGHT * scaleY;
+  }
+
   restrictArea(articlePosition: number, articleHeight: number): void {
 
-    const articleHeightPx = articleHeight / this.VIEWPORT_HEIGHT_VH * window.innerHeight;
-    const articlesHeightPx: number = this.getArticlesHeight(articlePosition) / this.VIEWPORT_HEIGHT_VH * window.innerHeight;
+    const articleHeightPx = articleHeight;
+    const articlesHeightPx: number = this.getArticlesHeight(articlePosition);
     const articlesWidthPx: number = window.innerWidth;
 
     const MARGIN_TOP_PX = 100;
     const MARGIN_BOTTOM_PX = 100;
-    const MARGIN_LEFT_PERCENTAGE = 0.2;
-    const MARGIN_RIGHT_PERCENTAGE = 0.2;
+    const MARGIN_LEFT_PERCENTAGE = 0.15;
+    const MARGIN_RIGHT_PERCENTAGE = 0.15;
 
     const top: number = (articlesHeightPx - articleHeightPx) + MARGIN_TOP_PX;
     const bottom: number = (articlesHeightPx) - MARGIN_BOTTOM_PX;
