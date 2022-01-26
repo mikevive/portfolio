@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +8,8 @@ import { Injectable } from '@angular/core';
 export class TreeService {
 
   private restrictedAreas: any[] = [];
-
   private treePositions: any[] = [];
+  private $motionBlur: Subject<number> = new Subject<number>();
 
   constructor() { }
 
@@ -52,6 +53,14 @@ export class TreeService {
       left: left,
       right: right
     });
+  }
+
+  setMotionBlur(value: number){
+    this.$motionBlur.next(value);
+  }
+
+  getMotionBlur(): Observable<number> {
+    return this.$motionBlur.asObservable();
   }
 
 }

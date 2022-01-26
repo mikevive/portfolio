@@ -8,11 +8,14 @@ import { TreeService } from 'src/app/components/molecules/tree/tree.service';
 })
 export class MainComponent implements OnInit {
 
+  @ViewChild('parallaxWrapper', { static: true }) parallaxWrapper: ElementRef;
   @ViewChild('parallaxGroup', { static: true }) parallaxGroup: ElementRef;
 
   private VIEWPORT_HEIGHT_VH = 100;
 
   public articlesHeight: number[] = [];
+  public startScrollTop: number = 0;
+  public startScrollTime: number = Date.now();
 
   constructor(
     public treeService: TreeService
@@ -26,6 +29,32 @@ export class MainComponent implements OnInit {
     this.articlesHeight.forEach((articleHeight, index) => {
       this.restrictArea(index + 1, articleHeight)
     })
+
+    const userAgent = navigator.userAgent;
+
+    if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(userAgent)) {
+      this.parallaxWrapper.nativeElement.addEventListener(
+        'scroll',
+        () => {
+          const currentTime = Date.now();
+          if (currentTime - this.startScrollTime < 50) return
+
+          this.startScrollTime = currentTime;
+          const endScrollTop = this.parallaxWrapper.nativeElement.scrollTop;
+          const scrollDifference = this.startScrollTop - endScrollTop;
+          this.treeService.setMotionBlur(scrollDifference);
+          this.startScrollTop = endScrollTop;
+          this.startScrollTime = Date.now();
+
+          setTimeout(() => {
+            const currentTime = Date.now();
+            const timeDifference = currentTime - this.startScrollTime;
+            if (timeDifference >= 100) this.treeService.setMotionBlur(0);
+          }, 100)
+        }
+      )
+    }
+
   }
 
   addArticle(scaleY: number): void {
@@ -43,8 +72,8 @@ export class MainComponent implements OnInit {
 
   restrictArea(articlePosition: number, articleHeight: number): void {
 
-    const articleHeightPx = articleHeight/this.VIEWPORT_HEIGHT_VH * window.innerHeight;
-    const articlesHeightPx: number = this.getArticlesHeight(articlePosition)/this.VIEWPORT_HEIGHT_VH * window.innerHeight;
+    const articleHeightPx = articleHeight / this.VIEWPORT_HEIGHT_VH * window.innerHeight;
+    const articlesHeightPx: number = this.getArticlesHeight(articlePosition) / this.VIEWPORT_HEIGHT_VH * window.innerHeight;
     const articlesWidthPx: number = window.innerWidth;
 
     const MARGIN_TOP_PX = 100;

@@ -14,6 +14,7 @@ export class TreeComponent implements OnInit {
 
   @Input() position: string;
   top: number;
+  bottom: number;
   left: number;
   opacity: number;
   blurOpacity: number;
@@ -54,11 +55,10 @@ export class TreeComponent implements OnInit {
     let isRegister: boolean;
 
     do{
-      let top: number= Math.floor(Math.random() * (parentHeight - 100)) + 50;
-      let left: number = Math.floor(Math.random() * parentWidth - 100) + 50;
-      isRegister = this.treeService.register(top, left, this.position)
-      this.top = top;
-      this.left = left;
+      this.top = Math.floor(Math.random() * (parentHeight - 100)) + 50;
+      this.bottom = parentHeight - this.top - 100;
+      this.left = Math.floor(Math.random() * parentWidth - 100) + 50;
+      isRegister = this.treeService.register(this.top, this.left, this.position)
     }
     while(!isRegister)
 
@@ -68,41 +68,22 @@ export class TreeComponent implements OnInit {
     this.redRef.nativeElement.style.transform = `translateX(${blurTranslation}px) translateY(${blurTranslation}px)`
     this.greenRef.nativeElement.style.transform = `translateX(-${blurTranslation}px) translateY(${blurTranslation}px)`
 
-    document.getElementById('parallax-wrapper').addEventListener(
-      'scroll',
-      () => {
+    this.treeService.getMotionBlur().subscribe(motionBlur => {
+      // TODO: Change getElementsByClassName to ViewChildren
+      const treeElements= this.elementRef.nativeElement.getElementsByClassName('tree');
+      for (let treeElement of treeElements) {
+        if(motionBlur >= 0) {
+          treeElement.style.bottom = `${this.bottom}px`;
+          treeElement.style.top = `auto`;
+        }
+        else{
+          treeElement.style.top = `${this.top}px`;
+          treeElement.style.bottom = `auto`;
+        }
+        treeElement.style.height = `${100 + Math.abs(motionBlur)}px`;
+      }
+    });
 
-          this.scrollTime = Date.now();
-
-          // TODO: remove document selector
-          const scrollTop = document.getElementById('parallax-wrapper').scrollTop;
-          const diff = this.scroll - scrollTop
-          this.scroll = scrollTop
-
-          const treeElements= this.elementRef.nativeElement.getElementsByClassName('tree')
-          for (let treeElement of treeElements) {
-            treeElement.style.height = `${100 + Math.abs(diff)}px`;
-            if(diff > 0) {
-              treeElement.style.top = `${this.top - diff}px`
-            };
-          }
-
-          setTimeout(() => {
-            const currentTime = Date.now();
-            const timeDiff = currentTime - this.scrollTime;
-            console.log('timeDiff: ', currentTime - this.scrollTime)
-            if(timeDiff >= 100){
-              const treeElements= this.elementRef.nativeElement.getElementsByClassName('tree')
-              for (let treeElement of treeElements) {
-                treeElement.style.height = `100px`;
-                treeElement.style.top = `${this.top}px`
-              }
-            }
-
-          }, 100 )
-      },
-      false
-    )
   }
 
 }
