@@ -55,8 +55,10 @@ export class TreeService {
     });
   }
 
-  setMotionBlur(value: number){
-    this.$motionBlur.next(value);
+  setMotionBlur(motionBlur: number){
+    if(motionBlur > 100) motionBlur = 100
+    if(motionBlur < -100) motionBlur = -100
+    this.$motionBlur.next(motionBlur);
   }
 
   getMotionBlur(): Observable<number> {
