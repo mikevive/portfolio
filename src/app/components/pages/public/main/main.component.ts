@@ -59,6 +59,7 @@ export class MainComponent implements OnInit {
       this.startScrollTop = endScrollTop;
       this.startScrollTime = Date.now();
 
+      // TODO: Fix bug on stop scrolling
       setTimeout(() => {
         const currentTime = Date.now();
         const timeDifference = currentTime - this.startScrollTime;

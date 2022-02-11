@@ -40,10 +40,21 @@ export class TreeComponent implements OnInit {
     top: 2
   }
 
+  private max: number;
+  private min: number;
+  private direction: string;
+
+  public lowPolyImg
+
+  private isScrolling: boolean = false;
+
   constructor(
     public elementRef: ElementRef,
     public treeService: TreeService
-  ) { }
+  ) {
+    this.lowPolyImg = Math.floor(Math.random() * 5) + 1;
+    this.direction = Math.random() > 0.5? 'UP':'DOWN';
+  }
 
   ngOnInit(): void {
     const parentRef = this.elementRef.nativeElement.parentElement;
@@ -59,6 +70,8 @@ export class TreeComponent implements OnInit {
       this.bottom = parentHeight - this.top - 100;
       this.left = Math.floor(Math.random() * parentWidth - 100) + 50;
       isRegister = this.treeService.register(this.top, this.left, this.position)
+      this.max = this.top + 10
+      this.min = this.top - 10
     }
     while(!isRegister)
 
@@ -69,8 +82,11 @@ export class TreeComponent implements OnInit {
     this.greenRef.nativeElement.style.transform = `translateX(-${blurTranslation}px) translateY(${blurTranslation}px)`
 
     this.treeService.getMotionBlur().subscribe(motionBlur => {
+
+      this.isScrolling = motionBlur !== 0;
+
       // TODO: Change getElementsByClassName to ViewChildren
-      const treeElements= this.elementRef.nativeElement.getElementsByClassName('tree');
+      const treeElements= this.elementRef.nativeElement.getElementsByClassName('sphere');
       for (let treeElement of treeElements) {
         if(motionBlur >= 0) {
           treeElement.style.bottom = `${this.bottom}px`;
@@ -83,6 +99,21 @@ export class TreeComponent implements OnInit {
         treeElement.style.height = `${100 + Math.abs(motionBlur)}px`;
       }
     });
+
+    const interval = Math.floor(Math.random() * 10) + 100
+
+    setInterval(() => {
+      if(!this.isScrolling){
+        if(this.direction === 'UP'){
+          this.top = this.top + 1
+          if(this.top >= this.max) this.direction = 'DOWN'
+        }
+        else{
+          this.top = this.top - 1
+          if(this.top <= this.min) this.direction = 'UP'
+        }
+      }
+    }, interval)
 
   }
 
