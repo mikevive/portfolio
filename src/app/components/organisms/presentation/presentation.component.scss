@@ -10,13 +10,19 @@ $presentation: $base;
   align-items: center;
 }
 
-.logo {
+.container {
   position: absolute;
   right: 180px;
   top: 80px;
-  width: 321px;
+  width: 285px;
   height: 285px;
   z-index: $under + $presentation;
+}
+
+.moon {
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 
 .glow {
@@ -75,10 +81,10 @@ $presentation: $base;
 @media (orientation:portrait) and (max-width: 575px) {
   h2 { font-size: 24px !important; }
   h1 { font-size: 48px !important; }
-  .logo {
+  .moon-container {
     left: 65px;
     top: 100px;
-    width: 107px;
+    width: 95px;
     height: 95px;
   }
 }
@@ -86,10 +92,10 @@ $presentation: $base;
 @media (orientation:portrait) and (min-width: 576px) {
   h2 { font-size: 36px !important; }
   h1 { font-size: 64px !important; }
-  .logo {
+  .moon-container {
     left: 65px;
     top: 120px;
-    width: 160px;
+    width: 143px;
     height: 143px;
   }
 }
@@ -99,20 +105,20 @@ $presentation: $base;
 @media (orientation:portrait) and (min-width: 768px) {
   h2 { font-size: 36px !important; }
   h1 { font-size: 96px !important; }
-  .logo {
+  .moon-container {
     left: 120px;
     top: 120px;
-    width: 257px;
+    width: 228px;
     height: 228px;
   }
 }
 
 @media (orientation:portrait) and (min-width: 992px) {
   h2 { font-size: 42px !important; }
-  .logo {
+  .moon-container {
     left: 140px;
     top: 120px;
-    width: 321px;
+    width: 285px;
     height: 285px;
   }
 }
@@ -130,10 +136,10 @@ $presentation: $base;
 @media (orientation:landscape) and (max-height: 419px) {
   h2 { font-size: 24px !important; }
   h1 { font-size: 48px !important; }
-  .logo {
+  .moon-container {
     right: 100px;
     top: 80px;
-    width: 107px;
+    width: 95px;
     height: 95px;
   }
 }
@@ -143,10 +149,10 @@ $presentation: $base;
 @media (orientation:landscape) and (min-height: 420px) {
   h2 { font-size: 24px !important; }
   h1 { font-size: 48px !important; }
-  .logo {
+  .moon-container {
     right: 100px;
     top: 80px;
-    width: 107px;
+    width: 95px;
     height: 95px;
   }
 }
@@ -154,10 +160,10 @@ $presentation: $base;
 @media (orientation:landscape) and (min-height: 420px) and (max-width: 575px) {
   h2 { font-size: 24px !important; }
   h1 { font-size: 48px !important; }
-  .logo {
+  .moon-container {
     right: 100px;
     top: 80px;
-    width: 107px;
+    width: 95px;
     height: 95px;
   }
 }
@@ -165,10 +171,10 @@ $presentation: $base;
 @media (orientation:landscape) and (min-height: 420px) and (min-width: 576px) {
   h2 { font-size: 24px !important; }
   h1 { font-size: 48px !important; }
-  .logo {
+  .moon-container {
     right: 100px;
     top: 80px;
-    width: 160px;
+    width: 143px;
     height: 143px;
   }
 }
@@ -176,10 +182,10 @@ $presentation: $base;
 @media (orientation:landscape) and (min-height: 420px) and (min-width: 768px) {
   h2 { font-size: 24px !important; }
   h1 { font-size: 48px !important; }
-  .logo {
+  .moon-container {
     right: 100px;
     top: 80px;
-    width: 257px;
+    width: 228px;
     height: 228px;
   }
 }
@@ -187,10 +193,10 @@ $presentation: $base;
 @media (orientation:landscape) and (min-height: 420px) and (min-width: 992px) {
   h2 { font-size: 36px !important; }
   h1 { font-size: 96px !important; }
-  .logo {
+  .moon-container {
     right: 180px;
     top: 80px;
-    width: 321px;
+    width: 285px;
     height: 285px;
   }
 }
@@ -198,10 +204,10 @@ $presentation: $base;
 @media (orientation:landscape) and (min-height: 420px) and (min-width: 1200px) {
   h2 { font-size: 36px !important; }
   h1 { font-size: 96px !important; }
-  .logo {
+  .moon-container {
     right: 180px;
     top: 80px;
-    width: 321px;
+    width: 285px;
     height: 285px;
   }
 }

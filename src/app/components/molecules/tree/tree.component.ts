@@ -102,7 +102,6 @@ export class TreeComponent implements OnInit {
 
     const interval = Math.floor(Math.random() * 10) + 100
 
-    // TODO: Fix bug on stop scrolling
     setInterval(() => {
       const conatinerElement = this.containerRef.nativeElement;
       if(this.direction === 'UP'){

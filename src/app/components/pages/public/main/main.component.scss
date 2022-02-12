@@ -2,8 +2,9 @@
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: overlay;
   perspective: 1000px;
+  scrollbar-width: none;
 
   .parallax-group {
     position: relative;
@@ -19,6 +20,10 @@
     .base-layer {
       inset: -50%;
       transform: translateZ(-1000px);
+      background-image: url('../../../../../assets/img/background.jpeg');
+      background-repeat: no-repeat;
+      background-position-y: center;
+      background-size: 100% auto;
     }
 
     .mid-layer {
