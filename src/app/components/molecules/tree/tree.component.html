@@ -1,6 +1,12 @@
-<div class="sphere blue blur" [ngStyle]="{'top.px': top, 'left.px': left, 'opacity': blurOpacity}" #blue></div>
-<div class="sphere red blur" [ngStyle]="{'top.px': top, 'left.px': left, 'opacity': blurOpacity}" #red></div>
-<div class="sphere green blur" [ngStyle]="{'top.px': top, 'left.px': left, 'opacity': blurOpacity}" #green></div>
-<div class="sphere real" [ngStyle]="{'top.px': top, 'left.px': left, 'opacity': opacity}"></div>
-<img class="tree" src="assets/img/low-poly-trees/Asset {{lowPolyImg}}.png" alt="low-poly-tree" [ngStyle]="{'top.px': top + 20, 'left.px': left + 20, 'opacity': opacity}">
-<img class="sphere crystal" src="assets/img/low-poly-trees/sphere.png" alt="low-poly-tree" [ngStyle]="{'top.px': top, 'left.px': left}">
+<div class="container" #container>
+  <div class="elastic bubble">
+    <div class="sphere" #sphere>
+      <div class="elastic blue blur" [ngStyle]="{'opacity': blurOpacity}" #blue></div>
+      <div class="elastic red blur" [ngStyle]="{'opacity': blurOpacity}" #red></div>
+      <div class="elastic green blur" [ngStyle]="{'opacity': blurOpacity}" #green></div>
+      <div class="elastic real" [ngStyle]="{'opacity': opacity}"></div>
+      <img class="elastic crystal" src="assets/img/low-poly-trees/sphere.png" alt="low-poly-tree">
+    </div>
+    <img class="tree" src="assets/img/low-poly-trees/Asset {{lowPolyImg}}.png" alt="low-poly-tree" [ngStyle]="{'opacity': opacity}">
+  </div>
+</div>

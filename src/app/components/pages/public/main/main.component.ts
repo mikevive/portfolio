@@ -48,7 +48,7 @@ export class MainComponent implements OnInit {
     const userAgent = navigator.userAgent;
     if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(userAgent)) {
       const currentTime = Date.now();
-      if (currentTime - this.startScrollTime < 50) return
+      if (currentTime - this.startScrollTime < 20) return
 
       this.startScrollTime = currentTime;
       const endScrollTop = this.parallaxWrapper.nativeElement.scrollTop;
@@ -59,12 +59,11 @@ export class MainComponent implements OnInit {
       this.startScrollTop = endScrollTop;
       this.startScrollTime = Date.now();
 
-      // TODO: Fix bug on stop scrolling
       setTimeout(() => {
         const currentTime = Date.now();
         const timeDifference = currentTime - this.startScrollTime;
-        if (timeDifference >= 100) this.treeService.setMotionBlur(0);
-      }, 100)
+        if (timeDifference >= 40) this.treeService.setMotionBlur(0);
+      }, 40)
     }
   }
 

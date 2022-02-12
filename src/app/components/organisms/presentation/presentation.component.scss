@@ -61,6 +61,7 @@ $presentation: $base;
   position: absolute;
   z-index: $presentation;
   width: 70%;
+  pointer-events: all;
 }
 
 /* Portrait */

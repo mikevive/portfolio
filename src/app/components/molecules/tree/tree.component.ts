@@ -8,13 +8,14 @@ import { TreeService } from './tree.service';
 })
 export class TreeComponent implements OnInit {
 
+  @ViewChild('container', { static: true }) containerRef: ElementRef;
+  @ViewChild('sphere', { static: true }) sphereRef: ElementRef;
   @ViewChild('blue', { static: true }) blueRef: ElementRef;
   @ViewChild('red', { static: true }) redRef: ElementRef;
   @ViewChild('green', { static: true }) greenRef: ElementRef;
 
   @Input() position: string;
   top: number;
-  bottom: number;
   left: number;
   opacity: number;
   blurOpacity: number;
@@ -40,13 +41,11 @@ export class TreeComponent implements OnInit {
     top: 2
   }
 
-  private max: number;
-  private min: number;
+  private topMax: number;
+  private topMin: number;
   private direction: string;
 
-  public lowPolyImg
-
-  private isScrolling: boolean = false;
+  public lowPolyImg: number;
 
   constructor(
     public elementRef: ElementRef,
@@ -67,15 +66,19 @@ export class TreeComponent implements OnInit {
 
     do{
       this.top = Math.floor(Math.random() * (parentHeight - 100)) + 50;
-      this.bottom = parentHeight - this.top - 100;
       this.left = Math.floor(Math.random() * parentWidth - 100) + 50;
       isRegister = this.treeService.register(this.top, this.left, this.position)
-      this.max = this.top + 10
-      this.min = this.top - 10
+      this.topMax = this.top + 10
+      this.topMin = this.top - 10
     }
     while(!isRegister)
 
     const blurTranslation = this.blurTranslations[this.position]
+
+    const conatinerElement = this.containerRef.nativeElement;
+
+    conatinerElement.style.top = `${this.top}px`
+    conatinerElement.style.left = `${this.left}px`
 
     this.blueRef.nativeElement.style.transform = `translateX(-${blurTranslation}px) translateY(-${blurTranslation}px)`
     this.redRef.nativeElement.style.transform = `translateX(${blurTranslation}px) translateY(${blurTranslation}px)`
@@ -83,36 +86,34 @@ export class TreeComponent implements OnInit {
 
     this.treeService.getMotionBlur().subscribe(motionBlur => {
 
-      this.isScrolling = motionBlur !== 0;
+      const sphereElement = this.sphereRef.nativeElement;
 
-      // TODO: Change getElementsByClassName to ViewChildren
-      const treeElements= this.elementRef.nativeElement.getElementsByClassName('sphere');
-      for (let treeElement of treeElements) {
-        if(motionBlur >= 0) {
-          treeElement.style.bottom = `${this.bottom}px`;
-          treeElement.style.top = `auto`;
-        }
-        else{
-          treeElement.style.top = `${this.top}px`;
-          treeElement.style.bottom = `auto`;
-        }
-        treeElement.style.height = `${100 + Math.abs(motionBlur)}px`;
+      if(motionBlur > 0) {
+        sphereElement.style.bottom = '0';
+        sphereElement.style.top = 'auto';
       }
+      else if (motionBlur < 0){
+        sphereElement.style.top = '0';
+        sphereElement.style.bottom = 'auto';
+      }
+      sphereElement.style.height = `${100 + Math.abs(motionBlur)}px`;
+
     });
 
     const interval = Math.floor(Math.random() * 10) + 100
 
+    // TODO: Fix bug on stop scrolling
     setInterval(() => {
-      if(!this.isScrolling){
-        if(this.direction === 'UP'){
-          this.top = this.top + 1
-          if(this.top >= this.max) this.direction = 'DOWN'
-        }
-        else{
-          this.top = this.top - 1
-          if(this.top <= this.min) this.direction = 'UP'
-        }
+      const conatinerElement = this.containerRef.nativeElement;
+      if(this.direction === 'UP'){
+        this.top = this.top + 1
+        if(this.top >= this.topMax) this.direction = 'DOWN'
       }
+      else{
+        this.top = this.top - 1
+        if(this.top <= this.topMin) this.direction = 'UP'
+      }
+      conatinerElement.style.top = `${this.top}px`
     }, interval)
 
   }

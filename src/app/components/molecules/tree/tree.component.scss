@@ -2,45 +2,68 @@
   cursor: pointer;
 }
 
-.sphere {
+.container {
+  pointer-events: all;
   position: absolute;
   width: 100px;
   height: 100px;
-  border-radius: 50px;
-  transition: height 0.1s;
-}
 
-.crystal {
-  opacity: 0.2;
-}
+  .bubble {
+    position: relative;
+    width: 100%;
+    height: 100%;
 
-.tree {
-  position: absolute;
-  width: 60px;
-  height: 60px;
-}
+    .sphere {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+    }
 
-.real {
-  background-color: rgba(136, 228, 251, 0.418);
-}
+    .tree {
+      position: absolute;
+      width: 60px;
+      margin-top: 20px;
+      margin-left: 20px;
+      height: 60px;
+    }
 
-.red {
-  background-color: red;
-}
+    .crystal {
+      opacity: 0.2;
+    }
 
-.blue {
-  background-color: blue;
-}
+    .real {
+      background-color: rgba(136, 228, 251, 0.418);
+    }
 
-.green {
-  background-color: lightgreen;
-}
+    .red {
+      background-color: red;
+    }
 
-.blur {
-  -webkit-filter: blur(1px);
-  -moz-filter: blur(1px);
-  -o-filter: blur(1px);
-  -ms-filter: blur(1px);
-  filter: blur(1px);
+    .blue {
+      background-color: blue;
+    }
+
+    .green {
+      background-color: lightgreen;
+    }
+
+    .elastic {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50px;
+      transition: height 0.1s;
+    }
+
+    .blur {
+      -webkit-filter: blur(1px);
+      -moz-filter: blur(1px);
+      -o-filter: blur(1px);
+      -ms-filter: blur(1px);
+      filter: blur(1px);
+    }
+
+  }
+
 }
 

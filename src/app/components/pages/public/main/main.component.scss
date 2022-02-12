@@ -11,6 +11,7 @@
     width: 100vw;
 
     .parallax-layer {
+      pointer-events: none;
       position: absolute;
       // background-color: rgba(151, 151, 151, 0.25);
     }
