@@ -1,3 +1,4 @@
+<app-splash *ngIf="!loaded"></app-splash>
 <router-outlet></router-outlet>
 <img src="assets/img/noise/Asset {{i+1}}.svg" alt="" class="noise" *ngFor="let noise of noises; let i = index">
 <img src="assets/img/scratch/Asset {{i+1}}.svg" alt="" class="scratch" *ngFor="let scratch of scratches; let i = index">

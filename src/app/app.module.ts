@@ -7,6 +7,7 @@ import { MainComponent } from './components/pages/public/main/main.component';
 import { PresentationComponent } from './components/organisms/presentation/presentation.component';
 import { QuoteComponent } from './components/organisms/quote/quote.component';
 import { TreeComponent } from './components/molecules/tree/tree.component';
+import { SplashComponent } from './components/pages/public/splash/splash.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { TreeComponent } from './components/molecules/tree/tree.component';
     MainComponent,
     PresentationComponent,
     QuoteComponent,
-    TreeComponent
+    TreeComponent,
+    SplashComponent
   ],
   imports: [
     BrowserModule,

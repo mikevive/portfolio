@@ -9,6 +9,7 @@ export class AppComponent implements OnInit {
 
   noises: any[];
   scratches: any[];
+  loaded: boolean = false;
 
   constructor(public elementRef: ElementRef){ }
 
@@ -18,6 +19,10 @@ export class AppComponent implements OnInit {
     // TODO: Change getElementsByClassName to ViewChildren
     const noiseElements= this.elementRef.nativeElement.getElementsByClassName('noise');
     const scratchElements= this.elementRef.nativeElement.getElementsByClassName('scratch');
+
+    setTimeout(() => {
+      this.loaded = true
+    },2400)
 
     setInterval(() => {
       for (let noiseElement of noiseElements) {
