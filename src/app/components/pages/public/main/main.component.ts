@@ -23,6 +23,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.addArticle(2);
     this.addArticle(1);
     this.addArticle(2);
     const height = this.getArticlesHeight();
@@ -36,8 +37,9 @@ export class MainComponent implements OnInit {
     window.addEventListener('resize', () => {
       this.INNER_HEIGHT = window.innerHeight;
       this.parallaxGroup.nativeElement
-      this.updateArticleHeight(1,1);
-      this.updateArticleHeight(2,2);
+      this.updateArticleHeight(1,2);
+      this.updateArticleHeight(2,1);
+      this.updateArticleHeight(3,2);
       const height = this.getArticlesHeight();
       this.parallaxGroup.nativeElement.style.height = `${height}px`;
     });
@@ -68,7 +70,7 @@ export class MainComponent implements OnInit {
   }
 
   addArticle(scaleY: number): void {
-    this.articlesHeight.push(this.INNER_HEIGHT * scaleY);
+    this.articlesHeight.push(this.INNER_HEIGHT * scaleY / 2);
   }
 
   getArticlesHeight(position: number = this.articlesHeight.length): number {
@@ -81,7 +83,7 @@ export class MainComponent implements OnInit {
   }
 
   updateArticleHeight(position: number, scaleY: number): void {
-    this.articlesHeight[position - 1] = this.INNER_HEIGHT * scaleY;
+    this.articlesHeight[position - 1] = this.INNER_HEIGHT * scaleY / 2;
   }
 
   restrictArea(articlePosition: number, articleHeight: number): void {
