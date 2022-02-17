@@ -20,13 +20,13 @@ export class SplashComponent implements OnInit {
   ngOnInit(): void {
 
     const brushInterval = setInterval(() => {
-      if(this.brush < 4){
+      if(this.brush < 5){
         this.brush += 1
       }
       else{
         this.brush = 1
       }
-    }, 100)
+    },100)
 
     setTimeout(() => {
       this.brushHidden = true;
@@ -38,10 +38,10 @@ export class SplashComponent implements OnInit {
           this.oldTextureRef.nativeElement.style.opacity = '0';
           setTimeout(() => {
             this.textHidden = true;
-          },200)
+          },100)
         },1000)
       },200)
-    }, 1000)
+    },500)
   }
 
 }

@@ -56,8 +56,8 @@ export class TreeService {
   }
 
   setMotionBlur(motionBlur: number){
-    if(motionBlur > 150) motionBlur = 150
-    if(motionBlur < -150) motionBlur = -150
+    if(motionBlur > 200) motionBlur = 200
+    if(motionBlur < -200) motionBlur = -200
     this.$motionBlur.next(motionBlur);
   }
 

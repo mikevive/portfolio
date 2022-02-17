@@ -3,10 +3,12 @@
     <img class="old-texture" src="assets/img/old-texture.png"/>
   </div>
   <div class="background" #background></div>
-  <img class="brush blur" [ngClass]="{'hidden': brushHidden}" src="assets/img/brushes/Asset {{brush}}.png"/>
+  <div class="brush-container" [ngClass]="{'hidden': brushHidden}">
+    <img class="brush blur" src="assets/img/brushes/Asset {{brush}}.png"/>
+  </div>
   <div class="text-container" [ngClass]="{'hidden': textHidden}">
-    <h1 class="text-bottom super-blur t1-24-bold text-grey-300">welcome</h1>
-    <h1 class="text-upper super-blur t1-24-bold text-grey-300">welcome</h1>
-    <h1 class="text blur t1-24-bold text-grey-300">welcome</h1>
+    <h1 class="text-bottom super-blur t1-24-bold text-grey-300">THE DAY DREAMER</h1>
+    <h1 class="text-upper super-blur t1-24-bold text-grey-300">THE DAY DREAMER</h1>
+    <h1 class="text blur t1-24-bold text-grey-300">THE DAY DREAMER</h1>
   </div>
 </div>

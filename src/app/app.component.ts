@@ -9,7 +9,8 @@ export class AppComponent implements OnInit {
 
   noises: any[];
   scratches: any[];
-  loaded: boolean = false;
+  isSplash: boolean = true;
+  isContent: boolean = false;
 
   constructor(public elementRef: ElementRef){ }
 
@@ -21,8 +22,12 @@ export class AppComponent implements OnInit {
     const scratchElements= this.elementRef.nativeElement.getElementsByClassName('scratch');
 
     setTimeout(() => {
-      this.loaded = true
+      this.isSplash = false;
     },2400)
+
+    setTimeout(() => {
+      this.isContent = true;
+    },1700)
 
     setInterval(() => {
       for (let noiseElement of noiseElements) {

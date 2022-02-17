@@ -23,10 +23,19 @@ $splash: $base;
   transition: opacity 0.2s linear;
 }
 
-.brush {
+.brush-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
   height: 200px;
-  width: auto;
+
+  .brush {
+    max-height:100%;
+    max-width:100%;
+  }
 }
+
 
 .text-container {
   position: relative;
@@ -43,7 +52,6 @@ $splash: $base;
 .text-bottom {
   position: absolute;
   color: red;
-  font-size: 24px;
   opacity: 0;
   animation: text-bottom 1.2s steps(10);
 }
@@ -59,14 +67,14 @@ $splash: $base;
     color: red;
     opacity: 0;
   }
-  78% {
+  82% {
     transform: translate(0,0);
     opacity: 1;
   }
-  80% {
+  84% {
     transform: translate(15px,-15px);
   }
-  82% {
+  86% {
     transform: translate(0,0);
   }
 }
@@ -74,7 +82,6 @@ $splash: $base;
 .text-upper {
   position: absolute;
   color: red;
-  font-size: 24px;
   opacity: 0;
   animation: text-upper 1.2s steps(10);
 }
@@ -90,14 +97,14 @@ $splash: $base;
     color: red;
     opacity: 0;
   }
-  78% {
+  82% {
     transform: translate(0,0);
     opacity: 1;
   }
-  80% {
+  84% {
     transform: translate(-15px,15px);
   }
-  82% {
+  86% {
     transform: translate(0,0);
   }
 }
