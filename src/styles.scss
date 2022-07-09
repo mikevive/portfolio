@@ -1,4 +1,5 @@
-$primary-font-family: 'Source Code Pro', monospace;
+$primary-font-family: 'ITC Cheltenham Std Book';
+$secondary-font-family: 'Chomsky';
 
 *,
 *::before,
@@ -12,7 +13,7 @@ html { }
 
 body {
     font-family: $primary-font-family;
-    background-color: rgb(255, 69, 27);
+    background-color: rgb(238, 228, 220);
 }
 
 /* Scrollbar */

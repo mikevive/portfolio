@@ -8,6 +8,8 @@ import { PresentationComponent } from './components/organisms/presentation/prese
 import { QuoteComponent } from './components/organisms/quote/quote.component';
 import { TreeComponent } from './components/molecules/tree/tree.component';
 import { SplashComponent } from './components/pages/public/splash/splash.component';
+import { ProjectsComponent } from './components/organisms/projects/projects.component';
+import { HighlightedTitleComponent } from './components/molecules/highlighted-title/highlighted-title.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +18,12 @@ import { SplashComponent } from './components/pages/public/splash/splash.compone
     PresentationComponent,
     QuoteComponent,
     TreeComponent,
-    SplashComponent
+    SplashComponent,
+    ProjectsComponent,
+    HighlightedTitleComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

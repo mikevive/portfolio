@@ -1,12 +1,8 @@
-<div class="container" #container>
-  <div class="bubble">
-    <div class="sphere" #sphere>
-      <div class="elastic blue blur" [ngStyle]="{'opacity': blurOpacity}" #blue></div>
-      <div class="elastic red blur" [ngStyle]="{'opacity': blurOpacity}" #red></div>
-      <div class="elastic green blur" [ngStyle]="{'opacity': blurOpacity}" #green></div>
-      <div class="elastic real" [ngStyle]="{'opacity': opacity}"></div>
+<div class="absolute-container" #absoluteContainer>
+  <div class="relative-container">
+    <div class="bubble" #bubble>
       <img class="elastic crystal" src="assets/img/low-poly-trees/sphere.png" alt="low-poly-tree">
     </div>
-    <img class="tree" src="assets/img/low-poly-trees/Asset {{lowPolyImg}}.png" alt="low-poly-tree" [ngStyle]="{'opacity': opacity}">
+    <img class="tree" src="assets/img/low-poly-trees/Asset {{lowPolyImg}}.png" alt="low-poly-tree" [ngStyle]="{'opacity': treeOpacity}">
   </div>
 </div>

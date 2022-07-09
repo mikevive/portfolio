@@ -1,12 +1,7 @@
-<div class="splash" #splash>
-  <div class="old-texture-container" #oldTexture>
-    <img class="old-texture" src="assets/img/old-texture.png"/>
-  </div>
+<div class="splash">
+  <img class="old-texture" #oldTexture src="assets/img/old-texture.png"/>
   <div class="background" #background></div>
-  <div class="brush-container" [ngClass]="{'hidden': brushHidden}">
-    <img class="brush blur" src="assets/img/brushes/Asset {{brush}}.png"/>
-  </div>
-  <div class="text-container" [ngClass]="{'hidden': textHidden}">
+  <div *ngIf="!textHidden" class="text-container">
     <h1 class="text-bottom super-blur t1-24-bold text-grey-300">THE DAY DREAMER</h1>
     <h1 class="text-upper super-blur t1-24-bold text-grey-300">THE DAY DREAMER</h1>
     <h1 class="text blur t1-24-bold text-grey-300">THE DAY DREAMER</h1>

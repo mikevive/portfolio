@@ -1,120 +1,116 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Required } from 'src/app/decorators/required.decorator';
 import { TreeService } from './tree.service';
 
 @Component({
   selector: 'app-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss']
+  styleUrls: ['./tree.component.scss'],
 })
+/** TODO: Comment */
 export class TreeComponent implements OnInit {
+  @ViewChild('absoluteContainer', { static: true })
+  absoluteContainerRef!: ElementRef;
 
-  @ViewChild('container', { static: true }) containerRef: ElementRef;
-  @ViewChild('sphere', { static: true }) sphereRef: ElementRef;
-  @ViewChild('blue', { static: true }) blueRef: ElementRef;
-  @ViewChild('red', { static: true }) redRef: ElementRef;
-  @ViewChild('green', { static: true }) greenRef: ElementRef;
+  @ViewChild('bubble', { static: true })
+  bubbleRef!: ElementRef;
 
-  @Input() position: string;
-  top: number;
-  left: number;
-  opacity: number;
-  blurOpacity: number;
+  @Input() @Required() position!: string;
 
-  scroll: number = 0;
-  scrollTime: any;
+  top: number | undefined;
+  left: number | undefined;
+  treeOpacity: number | undefined;
+  blurOpacity: number | undefined;
+  lowPolyImg: number = Math.floor(Math.random() * 5) + 1;
 
-  private opacities: any = {
+  private topMax: number | undefined;
+  private topMin: number | undefined;
+  private direction: string = Math.round(Math.random()) ? 'UP' : 'DOWN';
+
+  private static MAIN_SPHERE_OPACITIES: any = {
     base: 0.2,
     mid: 0.5,
-    top: 0.8
-  }
+    top: 0.8,
+  };
 
-  private blurOpacities: any = {
+  private static BUBBLE_BLUR_OPACITIES: any = {
     base: 0.1,
     mid: 0.2,
-    top: 0.3
-  }
+    top: 0.3,
+  };
 
-  private blurTranslations: any = {
+  private static BUBBLE_BLUR_TRANSLATIONS: any = {
     base: 6,
     mid: 4,
-    top: 2
-  }
+    top: 2,
+  };
 
-  private topMax: number;
-  private topMin: number;
-  private direction: string;
-
-  public lowPolyImg: number;
-
+  /**
+   * @param {ElementRef} elementRef
+   * @param  {TreeService} treeService
+   */
   constructor(
-    public elementRef: ElementRef,
-    public treeService: TreeService
-  ) {
-    this.lowPolyImg = Math.floor(Math.random() * 5) + 1;
-    this.direction = Math.random() > 0.5? 'UP':'DOWN';
-  }
+    private elementRef: ElementRef,
+    private treeService: TreeService
+  ) {}
 
+  /**
+   * @returns Void.
+   */
   ngOnInit(): void {
     const parentRef = this.elementRef.nativeElement.parentElement;
     const parentWidth: number = parentRef.clientWidth;
     const parentHeight: number = parentRef.clientHeight;
-    this.opacity = this.opacities[this.position];
-    this.blurOpacity = this.blurOpacities[this.position];
+    this.treeOpacity = TreeComponent.MAIN_SPHERE_OPACITIES[this.position];
+    this.blurOpacity = TreeComponent.BUBBLE_BLUR_OPACITIES[this.position];
 
     let isRegister: boolean;
 
-    do{
+    do {
       this.top = Math.floor(Math.random() * (parentHeight - 100)) + 50;
       this.left = Math.floor(Math.random() * parentWidth - 100) + 50;
-      isRegister = this.treeService.register(this.top, this.left, this.position)
-      this.topMax = this.top + 10
-      this.topMin = this.top - 10
-    }
-    while(!isRegister)
+      isRegister = this.treeService.register(
+        this.top,
+        this.left,
+        this.position
+      );
+      this.topMax = this.top + 10;
+      this.topMin = this.top - 10;
+    } while (!isRegister);
 
-    const blurTranslation = this.blurTranslations[this.position]
+    const blurTranslation =
+      TreeComponent.BUBBLE_BLUR_TRANSLATIONS[this.position];
 
-    const conatinerElement = this.containerRef.nativeElement;
+    const conatinerElement = this.absoluteContainerRef.nativeElement;
 
-    conatinerElement.style.top = `${this.top}px`
-    conatinerElement.style.left = `${this.left}px`
-
-    this.blueRef.nativeElement.style.transform = `translateX(-${blurTranslation}px) translateY(-${blurTranslation}px)`
-    this.redRef.nativeElement.style.transform = `translateX(${blurTranslation}px) translateY(${blurTranslation}px)`
-    this.greenRef.nativeElement.style.transform = `translateX(-${blurTranslation}px) translateY(${blurTranslation}px)`
+    conatinerElement.style.top = `${this.top}px`;
+    conatinerElement.style.left = `${this.left}px`;
 
     this.treeService.getMotionBlur().subscribe(motionBlur => {
+      const bubbleElement = this.bubbleRef.nativeElement;
 
-      const sphereElement = this.sphereRef.nativeElement;
-
-      if(motionBlur > 0) {
-        sphereElement.style.bottom = '0';
-        sphereElement.style.top = 'auto';
+      if (motionBlur > 0) {
+        bubbleElement.style.bottom = '0';
+        bubbleElement.style.top = 'auto';
+      } else if (motionBlur < 0) {
+        bubbleElement.style.top = '0';
+        bubbleElement.style.bottom = 'auto';
       }
-      else if (motionBlur < 0){
-        sphereElement.style.top = '0';
-        sphereElement.style.bottom = 'auto';
-      }
-      sphereElement.style.height = `${100 + Math.abs(motionBlur)}px`;
-
+      bubbleElement.style.height = `${100 + Math.abs(motionBlur)}px`;
     });
 
-    const interval = Math.floor(Math.random() * 10) + 100
+    const interval = Math.floor(Math.random() * 10) + 100;
 
     setInterval(() => {
-      const conatinerElement = this.containerRef.nativeElement;
-      if(this.direction === 'UP'){
-        this.top = this.top + 1
-        if(this.top >= this.topMax) this.direction = 'DOWN'
+      const conatinerElement = this.absoluteContainerRef.nativeElement;
+      if (this.direction === 'UP') {
+        this.top = this.top! + 1;
+        if (this.top >= this.topMax!) this.direction = 'DOWN';
+      } else {
+        this.top = this.top! - 1;
+        if (this.top <= this.topMin!) this.direction = 'UP';
       }
-      else{
-        this.top = this.top - 1
-        if(this.top <= this.topMin) this.direction = 'UP'
-      }
-      conatinerElement.style.top = `${this.top}px`
-    }, interval)
-
+      conatinerElement.style.top = `${this.top}px`;
+    }, interval);
   }
-
 }

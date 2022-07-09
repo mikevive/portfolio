@@ -1,6 +1,6 @@
 @import "../../../../styles.scss";
 
-$presentation: $base;
+$quote: $base;
 
 :host {
   width: 100%;
@@ -14,27 +14,16 @@ $presentation: $base;
   opacity: 0.4;
 }
 
-.green-text {
-  color: lightgreen;
-  transform: translateX(-1px) translateY(1px)
-}
-
-.blue-text {
-  color: blue;
-  transform: translateX(-1px) translateY(-1px)
-}
-
-.red-text {
-  color: red;
-  transform: translateX(1px) translateY(1px)
-}
-
-.presentation {
+.quote {
   position: absolute;
-  z-index: $presentation;
+  z-index: $quote;
   width: 70%;
   pointer-events: all;
   text-align: center;
+}
+
+.title {
+  font-family: 'Chomsky';
 }
 
 /* Portrait */
@@ -51,14 +40,14 @@ $presentation: $base;
 }
 
 @media (orientation:portrait) and (min-width: 576px) {
-  h2 { font-size: 36px !important; }
+  h2 { font-size: 24px !important; }
   h1 { font-size: 64px !important; }
 }
 
 /* Laptop/Tablet Portrait */
 
 @media (orientation:portrait) and (min-width: 768px) {
-  h2 { font-size: 36px !important; }
+  h2 { font-size: 24px !important; }
   h1 { font-size: 96px !important; }
 }
 
@@ -104,11 +93,11 @@ $presentation: $base;
 }
 
 @media (orientation:landscape) and (min-height: 420px) and (min-width: 992px) {
-  h2 { font-size: 36px !important; }
+  h2 { font-size: 24px !important; }
   h1 { font-size: 96px !important; }
 }
 
 @media (orientation:landscape) and (min-height: 420px) and (min-width: 1200px) {
-  h2 { font-size: 36px !important; }
+  h2 { font-size: 24px !important; }
   h1 { font-size: 96px !important; }
 }

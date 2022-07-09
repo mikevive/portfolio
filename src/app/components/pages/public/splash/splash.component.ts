@@ -1,35 +1,40 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { Required } from 'src/app/decorators/required.decorator';
 
 @Component({
   selector: 'app-splash',
   templateUrl: './splash.component.html',
-  styleUrls: ['./splash.component.scss']
+  styleUrls: ['./splash.component.scss'],
 })
-export class SplashComponent implements OnInit {
+/** First page to display when the app is load. */
+export class SplashComponent implements OnInit, OnDestroy {
+  @ViewChild('oldTexture', { static: true })
+  @Required()
+  oldTextureRef!: ElementRef;
 
-  @ViewChild('splash', { static: true }) splashRef: ElementRef;
-  @ViewChild('background', { static: true }) backgroundRef: ElementRef;
-  @ViewChild('oldTexture', { static: true }) oldTextureRef: ElementRef;
+  @ViewChild('background', { static: true })
+  @Required()
+  backgroundRef!: ElementRef;
 
-  public brush: number = 1;
-  public brushHidden: boolean = false;
-  public textHidden: boolean = true;
+  textHidden: boolean = true;
 
-  constructor() { }
+  /**
+   * @returns Void.
+   */
+  constructor() {}
 
+  /**
+   * @returns Void.
+   */
   ngOnInit(): void {
-
-    const brushInterval = setInterval(() => {
-      if(this.brush < 5){
-        this.brush += 1
-      }
-      else{
-        this.brush = 1
-      }
-    },100)
-
+    // TODO: Split in async/await funcitons
     setTimeout(() => {
-      this.brushHidden = true;
       setTimeout(() => {
         this.textHidden = false;
         setTimeout(() => {
@@ -38,10 +43,14 @@ export class SplashComponent implements OnInit {
           this.oldTextureRef.nativeElement.style.opacity = '0';
           setTimeout(() => {
             this.textHidden = true;
-          },100)
-        },1000)
-      },200)
-    },500)
+          }, 100);
+        }, 1000);
+      }, 200);
+    }, 500);
   }
 
+  /**
+   * @returns Void.
+   */
+  ngOnDestroy(): void {}
 }

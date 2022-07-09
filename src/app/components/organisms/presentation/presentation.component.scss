@@ -33,41 +33,15 @@ $presentation: $base;
   opacity: 0.4;
 }
 
-.green {
-  filter: brightness(140%) saturate(200) hue-rotate(30deg) blur(1px);
-  transform: translateX(-1px) translateY(1px)
-}
-
-.blue {
-  filter: brightness(50%) saturate(200) hue-rotate(120deg) blur(1px);
-  transform: translateX(-2px) translateY(-2px)
-}
-
-.red {
-  filter: brightness(100%) saturate(100) hue-rotate(250deg) blur(1px);
-  transform: translateX(2px) translateY(2px)
-}
-
-.green-text {
-  color: lightgreen;
-  transform: translateX(-1px) translateY(1px)
-}
-
-.blue-text {
-  color: blue;
-  transform: translateX(-1px) translateY(-1px)
-}
-
-.red-text {
-  color: red;
-  transform: translateX(1px) translateY(1px)
-}
-
 .presentation {
   position: absolute;
   z-index: $presentation;
   width: 70%;
   pointer-events: all;
+}
+
+.name {
+  font-family: 'Chomsky';
 }
 
 /* Portrait */
@@ -90,7 +64,7 @@ $presentation: $base;
 }
 
 @media (orientation:portrait) and (min-width: 576px) {
-  h2 { font-size: 36px !important; }
+  h2 { font-size: 24px !important; }
   h1 { font-size: 64px !important; }
   .moon-container {
     left: 65px;
@@ -103,7 +77,7 @@ $presentation: $base;
 /* Laptop/Tablet Portrait */
 
 @media (orientation:portrait) and (min-width: 768px) {
-  h2 { font-size: 36px !important; }
+  h2 { font-size: 24px !important; }
   h1 { font-size: 96px !important; }
   .moon-container {
     left: 120px;
@@ -191,7 +165,7 @@ $presentation: $base;
 }
 
 @media (orientation:landscape) and (min-height: 420px) and (min-width: 992px) {
-  h2 { font-size: 36px !important; }
+  h2 { font-size: 24px !important; }
   h1 { font-size: 96px !important; }
   .moon-container {
     right: 180px;
@@ -202,7 +176,7 @@ $presentation: $base;
 }
 
 @media (orientation:landscape) and (min-height: 420px) and (min-width: 1200px) {
-  h2 { font-size: 36px !important; }
+  h2 { font-size: 24px !important; }
   h1 { font-size: 96px !important; }
   .moon-container {
     right: 180px;

@@ -2,18 +2,18 @@
   cursor: pointer;
 }
 
-.container {
+.absolute-container {
   pointer-events: all;
   position: absolute;
   width: 100px;
   height: 100px;
 
-  .bubble {
+  .relative-container {
     position: relative;
     width: 100%;
     height: 100%;
 
-    .sphere {
+    .bubble {
       position: absolute;
       width: 100px;
       height: 100px;
