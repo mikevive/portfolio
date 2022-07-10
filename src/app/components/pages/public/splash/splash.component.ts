@@ -35,18 +35,16 @@ export class SplashComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // TODO: Split in async/await funcitons
     setTimeout(() => {
+      this.textHidden = false;
       setTimeout(() => {
-        this.textHidden = false;
+        this.backgroundRef.nativeElement.style.opacity = '0';
+        this.oldTextureRef.nativeElement.style.top = '-100vh';
+        this.oldTextureRef.nativeElement.style.opacity = '0';
         setTimeout(() => {
-          this.backgroundRef.nativeElement.style.opacity = '0';
-          this.oldTextureRef.nativeElement.style.top = '-100vh';
-          this.oldTextureRef.nativeElement.style.opacity = '0';
-          setTimeout(() => {
-            this.textHidden = true;
-          }, 100);
-        }, 1000);
-      }, 200);
-    }, 500);
+          this.textHidden = true;
+        }, 100);
+      }, 1000);
+    }, 700);
   }
 
   /**

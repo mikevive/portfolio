@@ -1,123 +1,75 @@
 @import "../../../../../styles.scss";
 
-$splash: $base;
-
 .splash {
   position: absolute;
   width: 100vw;
   height: 100vh;
-  z-index: $splash;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   overflow: hidden;
-}
+  z-index: $base;
 
-.old-texture{
-  position: absolute;
-  top: 0;
-  opacity: 1;
-  width: 100vw;
-  height: 300vh;
-  background-color: rgb(255, 102, 0);
-  transition: all 0.3s linear;
-}
-
-.background {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  opacity: 1;
-  background-color: rgb(33, 33, 33);
-  transition: opacity 0.2s linear;
-}
-
-.text-container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.text {
-  color: rgba(248, 150, 248, 0.884);
-  position: absolute;
-}
-
-.text-bottom {
-  position: absolute;
-  color: red;
-  opacity: 0;
-  animation: text-bottom 1.2s steps(10);
-}
-
-@keyframes text-bottom {
-  0% {
-    transform: translate(0px,10px);
-    color: white;
-    opacity: 0.2;
-  }
-  5% {
-    transform: translate(0,0);
-    color: red;
-    opacity: 0;
-  }
-  82% {
-    transform: translate(0,0);
+  .old-texture{
+    z-index: inherit;
+    position: absolute;
+    top: 0;
     opacity: 1;
+    width: 100vw;
+    height: 300vh;
+    transition: all 0.3s linear;
   }
-  84% {
-    transform: translate(15px,-15px);
-  }
-  86% {
-    transform: translate(0,0);
-  }
-}
 
-.text-upper {
-  position: absolute;
-  color: red;
-  opacity: 0;
-  animation: text-upper 1.2s steps(10);
-}
-
-@keyframes text-upper {
-  0% {
-    transform: translate(0px,-10px);
-    color: white;
-    opacity: 0.2;
-  }
-  5% {
-    transform: translate(0,0);
-    color: red;
-    opacity: 0;
-  }
-  82% {
-    transform: translate(0,0);
+  .background {
+    z-index: inherit;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
     opacity: 1;
+    background-color: rgb(33, 33, 33);
+    transition: opacity 0.2s linear;
   }
-  84% {
-    transform: translate(-15px,15px);
-  }
-  86% {
-    transform: translate(0,0);
-  }
-}
 
-.blur {
-  -webkit-filter: blur(0.7px);
-  -moz-filter: blur(0.7px);
-  -o-filter: blur(0.7px);
-  -ms-filter: blur(0.7px);
-  filter: blur(0.7px);
-  opacity: 0.9;
-}
+  .text-container {
+    z-index: inherit;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 
-.super-blur {
-  -webkit-filter: blur(2px);
-  -moz-filter: blur(2px);
-  -o-filter: blur(2px);
-  -ms-filter: blur(2px);
-  filter: blur(2px);
+    .lake {
+      position: absolute;
+      background-image: url(/assets/img/collages/lake.jpeg);
+      background-size: 400px 400px;
+      height: 300px;
+      width: 300px;
+      border-radius: 150px;
+    }
+
+    .plant {
+      position: absolute;
+      height: 400px;
+      width: auto;
+    }
+
+    .leaves {
+      position: absolute;
+      right: 90px;
+      top: 0px;
+      transform: rotate(35deg);
+      height: 300px;
+      width: auto;
+    }
+
+    .leaves-two {
+      position: absolute;
+      left: 90px;
+      top: -150px;
+      height: 300px;
+      width: auto;
+    }
+
+  }
 }
