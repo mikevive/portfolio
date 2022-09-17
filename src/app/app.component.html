@@ -1,5 +1,5 @@
-<app-splash *ngIf="isSplash"></app-splash>
-<img src="assets/img/paper-card-texture.jpeg" alt="" class="paper-texture">
+<app-splash *ngIf="!isLoadingComplete"></app-splash>
+<img src="assets/img/paper-card-texture.jpeg" alt="" class="paper-texture" (load)="splashService.removeElementBeingLoaded()" #loadImg>
 <img src="assets/img/noise/Asset {{i+1}}.svg" alt="" class="noise" *ngFor="let noise of noises; let i = index">
 <img src="assets/img/scratch/Asset {{i+1}}.svg" alt="" class="scratch" *ngFor="let scratch of scratches; let i = index">
 <router-outlet></router-outlet>

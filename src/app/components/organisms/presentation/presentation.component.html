@@ -1,8 +1,8 @@
 <!-- TODO: Reduce this code -->
 <div class="moon-container">
     <div class="moon" #moonSubcontainer>
-      <img class="moon glow" [src]="img"/>
-      <img class="moon" [src]="img"/>
+      <img class="moon glow" [src]="img" (load)="splashService.removeElementBeingLoaded()" #loadImg/>
+      <img class="moon" [src]="img" (load)="splashService.removeElementBeingLoaded()" #loadImg/>
     </div>
 </div>
 

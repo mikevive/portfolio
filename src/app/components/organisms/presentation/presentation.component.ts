@@ -1,4 +1,13 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
+import { SplashService } from '../../pages/public/splash/splash.service';
 
 @Component({
   selector: 'app-presentation',
@@ -6,7 +15,10 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./presentation.component.scss'],
 })
 /** TODO: Comment */
-export class PresentationComponent implements OnInit {
+export class PresentationComponent implements OnInit, AfterViewInit {
+  @ViewChildren('loadImg')
+  loadImg!: QueryList<ElementRef>;
+
   @ViewChild('moonSubcontainer', { static: true })
   moonSubcontainerRef!: ElementRef;
 
@@ -16,6 +28,8 @@ export class PresentationComponent implements OnInit {
   topMax: number = 5;
   topMin: number = -5;
   direction: string = 'UP';
+
+  constructor(public splashService: SplashService) {}
 
   /**
    * @returns Void.
@@ -32,5 +46,10 @@ export class PresentationComponent implements OnInit {
       }
       moonSubcontainer.style.top = `${this.top}px`;
     }, 200);
+  }
+
+  ngAfterViewInit(): void {
+    const numberOfImagesBeingLoaded = this.loadImg.length;
+    this.splashService.addElementsBeingLoaded(numberOfImagesBeingLoaded);
   }
 }

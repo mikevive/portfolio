@@ -1,4 +1,13 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
+import { combineLatest, tap, timer } from 'rxjs';
+import { SplashService } from './components/pages/public/splash/splash.service';
 
 @Component({
   selector: 'app-root',
@@ -6,16 +15,22 @@ import { Component, ElementRef, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 /** TODO: Comment */
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
+  @ViewChildren('loadImg')
+  loadImg!: QueryList<ElementRef>;
+
   noises: void[] = Array(27);
   scratches: void[] = Array(7);
-  isSplash: boolean = true;
-  isContent: boolean = false;
+  isLoadingComplete: boolean = false;
 
   /**
    * @param elementRef
+   * @param splashService
    */
-  constructor(private elementRef: ElementRef) {}
+  constructor(
+    private elementRef: ElementRef,
+    public splashService: SplashService
+  ) {}
 
   /**
    * @returns Void.
@@ -26,14 +41,6 @@ export class AppComponent implements OnInit {
       this.elementRef.nativeElement.getElementsByClassName('noise');
     const scratchElements =
       this.elementRef.nativeElement.getElementsByClassName('scratch');
-
-    setTimeout(() => {
-      this.isSplash = false;
-    }, 2400);
-
-    setTimeout(() => {
-      this.isContent = true;
-    }, 1700);
 
     setInterval(() => {
       for (let noiseElement of noiseElements) {
@@ -58,5 +65,16 @@ export class AppComponent implements OnInit {
         }
       }
     }, 10);
+  }
+
+  ngAfterViewInit(): void {
+    const numberOfImagesBeingLoaded = this.loadImg.length;
+    this.splashService.addElementsBeingLoaded(numberOfImagesBeingLoaded);
+
+    this.splashService.isLoadingComplete().subscribe(() => {
+      setTimeout(() => {
+        this.isLoadingComplete = true;
+      }, 3400);
+    });
   }
 }

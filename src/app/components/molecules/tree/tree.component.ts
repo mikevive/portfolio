@@ -1,5 +1,15 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { Required } from 'src/app/decorators/required.decorator';
+import { SplashService } from '../../pages/public/splash/splash.service';
 import { TreeService } from './tree.service';
 
 @Component({
@@ -8,7 +18,10 @@ import { TreeService } from './tree.service';
   styleUrls: ['./tree.component.scss'],
 })
 /** TODO: Comment */
-export class TreeComponent implements OnInit {
+export class TreeComponent implements OnInit, AfterViewInit {
+  @ViewChildren('loadImg')
+  loadImg!: QueryList<ElementRef>;
+
   @ViewChild('absoluteContainer', { static: true })
   absoluteContainerRef!: ElementRef;
 
@@ -48,10 +61,12 @@ export class TreeComponent implements OnInit {
   /**
    * @param {ElementRef} elementRef
    * @param  {TreeService} treeService
+   * @param splashService
    */
   constructor(
     private elementRef: ElementRef,
-    private treeService: TreeService
+    private treeService: TreeService,
+    public splashService: SplashService
   ) {}
 
   /**
@@ -112,5 +127,10 @@ export class TreeComponent implements OnInit {
       }
       conatinerElement.style.top = `${this.top}px`;
     }, interval);
+  }
+
+  ngAfterViewInit(): void {
+    const numberOfImagesBeingLoaded = this.loadImg.length;
+    this.splashService.addElementsBeingLoaded(numberOfImagesBeingLoaded);
   }
 }

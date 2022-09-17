@@ -10,8 +10,7 @@
   overflow-y: overlay;
   perspective: 1000px;
   scrollbar-width: none;
-  animation: load 0.6s steps(10);
-  animation-delay: 1500ms;
+  opacity: 0;
 
   .parallax-group {
     position: relative;
@@ -56,18 +55,22 @@
 
 }
 
+.parallax-wrapper--animation {
+  animation: load 100ms steps(10) ;
+  animation-fill-mode: forwards;
+}
+
 @keyframes load {
   20% {
-    opacity: 0.3;
-  }
-  40% {
     opacity: 1;
     transform: scale(1);
   }
-  42% {
+  60% {
+    opacity: 1;
     transform: scale(1.1);
   }
-  44% {
+  100% {
+    opacity: 1;
     transform: scale(1);
   }
 }

@@ -1,8 +1,14 @@
 <div class="absolute-container" #absoluteContainer>
   <div class="relative-container">
     <div class="bubble" #bubble>
-      <img class="elastic crystal" src="assets/img/low-poly-trees/sphere.png" alt="low-poly-tree">
+      <img class="elastic crystal"
+      src="assets/img/low-poly-trees/sphere.png" alt="low-poly-tree"
+      (load)="splashService.removeElementBeingLoaded()" #loadImg>
     </div>
-    <img class="tree" src="assets/img/low-poly-trees/Asset {{lowPolyImg}}.png" alt="low-poly-tree" [ngStyle]="{'opacity': treeOpacity}">
+    <img class="tree"
+      src="assets/img/low-poly-trees/Asset {{ lowPolyImg }}.png"
+      alt="low-poly-tree"
+      [ngStyle]="{ opacity: treeOpacity }"
+      (load)="splashService.removeElementBeingLoaded()" #loadImg/>
   </div>
 </div>

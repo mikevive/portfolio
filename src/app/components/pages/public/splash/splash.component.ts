@@ -1,11 +1,14 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   OnDestroy,
-  OnInit,
+  QueryList,
   ViewChild,
+  ViewChildren,
 } from '@angular/core';
 import { Required } from 'src/app/decorators/required.decorator';
+import { SplashService } from './splash.service';
 
 @Component({
   selector: 'app-splash',
@@ -13,7 +16,21 @@ import { Required } from 'src/app/decorators/required.decorator';
   styleUrls: ['./splash.component.scss'],
 })
 /** First page to display when the app is load. */
-export class SplashComponent implements OnInit, OnDestroy {
+export class SplashComponent implements OnDestroy, AfterViewInit {
+  @ViewChild('splash', { static: true })
+  @Required()
+  splashRef!: ElementRef;
+
+  @ViewChildren('loadImg')
+  loadImg!: QueryList<ElementRef>;
+
+  @ViewChildren('secondaryImg')
+  secondaryImgRef!: QueryList<ElementRef>;
+
+  @ViewChild('primaryImg', { static: true })
+  @Required()
+  primaryImgRef!: ElementRef;
+
   @ViewChild('oldTexture', { static: true })
   @Required()
   oldTextureRef!: ElementRef;
@@ -22,29 +39,32 @@ export class SplashComponent implements OnInit, OnDestroy {
   @Required()
   backgroundRef!: ElementRef;
 
-  textHidden: boolean = true;
+  /**
+   * @param splashService
+   */
+  constructor(public splashService: SplashService) {}
 
   /**
-   * @returns Void.
+   * @returns {void}.
    */
-  constructor() {}
+  ngAfterViewInit(): void {
+    const numberOfImagesBeingLoaded = this.loadImg.length;
+    this.splashService.addElementsBeingLoaded(numberOfImagesBeingLoaded);
 
-  /**
-   * @returns Void.
-   */
-  ngOnInit(): void {
-    // TODO: Split in async/await funcitons
-    setTimeout(() => {
-      this.textHidden = false;
+    this.splashService.isLoadingComplete().subscribe(() => {
+      this.primaryImgRef.nativeElement.style.opacity = '1';
+      setTimeout(() => {
+        this.secondaryImgRef.forEach(
+          secondaryImg => (secondaryImg.nativeElement.style.opacity = '1')
+        );
+      }, 1000);
       setTimeout(() => {
         this.backgroundRef.nativeElement.style.opacity = '0';
         this.oldTextureRef.nativeElement.style.top = '-100vh';
         this.oldTextureRef.nativeElement.style.opacity = '0';
-        setTimeout(() => {
-          this.textHidden = true;
-        }, 100);
-      }, 1000);
-    }, 700);
+        this.splashRef.nativeElement.style.opacity = '0';
+      }, 3000);
+    });
   }
 
   /**

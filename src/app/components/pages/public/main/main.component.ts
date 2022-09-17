@@ -1,5 +1,12 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { TreeService } from 'src/app/components/molecules/tree/tree.service';
+import { SplashService } from '../splash/splash.service';
 
 @Component({
   selector: 'app-main',
@@ -7,7 +14,7 @@ import { TreeService } from 'src/app/components/molecules/tree/tree.service';
   styleUrls: ['./main.component.scss'],
 })
 /** TODO: Comment */
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, AfterViewInit {
   @ViewChild('parallaxWrapper', { static: true }) parallaxWrapper!: ElementRef;
   @ViewChild('parallaxGroup', { static: true }) parallaxGroup!: ElementRef;
 
@@ -17,10 +24,16 @@ export class MainComponent implements OnInit {
   startScrollTop: number = 0;
   startScrollTime: number = Date.now();
 
+  isLoadingComplete: boolean = false;
+
   /**
    * @param treeService
+   * @param splashService
    */
-  constructor(private treeService: TreeService) {}
+  constructor(
+    private treeService: TreeService,
+    private splashService: SplashService
+  ) {}
 
   /**
    * @returns Void.
@@ -140,5 +153,14 @@ export class MainComponent implements OnInit {
       articlesWidthPx - articlesWidthPx * MARGIN_RIGHT_PERCENTAGE;
 
     this.treeService.addRestrictedArea(top, bottom, left, right);
+  }
+
+  ngAfterViewInit(): void {
+    this.splashService.isLoadingComplete().subscribe(() => {
+      setTimeout(() => {
+        console.log('animation');
+        this.isLoadingComplete = true;
+      }, 2960);
+    });
   }
 }

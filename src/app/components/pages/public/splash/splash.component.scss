@@ -10,6 +10,7 @@
   flex-direction: column;
   overflow: hidden;
   z-index: $base;
+  transition: opacity 0.3s linear;
 
   .old-texture{
     z-index: inherit;
@@ -31,45 +32,87 @@
     transition: opacity 0.2s linear;
   }
 
-  .text-container {
+  .loading-container {
     z-index: inherit;
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+    width: 300px;
+    height: 300px;
+    bottom: 50px;
 
-    .lake {
+    .loading-circle {
       position: absolute;
-      background-image: url(/assets/img/collages/lake.jpeg);
-      background-size: 400px 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       height: 300px;
       width: 300px;
       border-radius: 150px;
+      top:50px;
+      background-color: #272727;
+      animation: splashBlink 1.5s steps(15) infinite;
     }
 
-    .plant {
+    .loading-inner-circle {
+      position: absolute;
+      height: 280px;
+      width: 280px;
+      border-radius: 140px;
+      border: 3px solid rgb(33, 33, 33);
+    }
+
+    .loading-text {
+      position: absolute;
+      color: rgb(31, 31, 31);
+      text-align: center;
+    }
+
+    .lake {
+      position: absolute;
+      height: 300px;
+      width: 300px;
+      border-radius: 150px;
+      top:50px;
+      opacity: 0;
+      transition: opacity 1s linear;
+    }
+
+    .bird {
       position: absolute;
       height: 400px;
       width: auto;
+      opacity: 0;
+      transition: opacity 0.75s linear;
     }
 
     .leaves {
       position: absolute;
-      right: 90px;
-      top: 0px;
+      left: 100px;
+      top: 200px;
       transform: rotate(35deg);
       height: 300px;
       width: auto;
+      opacity: 0;
+      transition: opacity 0.75s linear;
     }
 
     .leaves-two {
       position: absolute;
-      left: 90px;
-      top: -150px;
+      right: 280px;
+      top: 50px;
       height: 300px;
       width: auto;
+      opacity: 0;
+      transition: opacity 0.75s linear;
     }
 
+  }
+}
+
+@keyframes splashBlink {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
   }
 }
