@@ -23,6 +23,16 @@ $presentation: $base;
   position: absolute;
   height: 100%;
   width: 100%;
+  animation: floating 4s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0%, 100% {
+    top: -5px;
+  }
+  50% {
+    top:5px;
+  }
 }
 
 .glow {
