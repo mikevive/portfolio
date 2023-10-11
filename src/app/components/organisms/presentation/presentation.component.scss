@@ -51,7 +51,11 @@ $presentation: $base;
 }
 
 .name {
-  font-family: 'Chomsky';
+  font-family: $primary-font-family;
+}
+
+.phrase {
+  font-family: $secondary-font-family;
 }
 
 /* Portrait */

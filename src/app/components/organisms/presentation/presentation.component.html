@@ -1,12 +1,23 @@
 <!-- TODO: Reduce this code -->
 <div class="moon-container">
-    <div class="moon">
-      <img class="moon glow" [src]="img" (load)="splashService.removeElementBeingLoaded()" #loadImg/>
-      <img class="moon" [src]="img" (load)="splashService.removeElementBeingLoaded()" #loadImg/>
-    </div>
+  <div class="moon">
+    <img
+      class="moon glow"
+      [src]="img"
+      (load)="splashService.removeElementBeingLoaded()"
+      #loadImg />
+    <img
+      class="moon"
+      [src]="img"
+      (load)="splashService.removeElementBeingLoaded()"
+      #loadImg />
+  </div>
 </div>
 
 <div class="presentation">
   <h1 class="name t1-96 text-grey-900">I'm Mike</h1>
-  <h2 class="t1-24 text-grey-600">I love to explore the nature of code and how it can impact human experiences.</h2>
+  <h2 class="phrase t1-24 text-grey-600">
+    I love to explore the nature of code and how it can impact human
+    experiences.
+  </h2>
 </div>

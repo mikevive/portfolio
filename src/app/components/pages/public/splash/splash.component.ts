@@ -15,17 +15,10 @@ import { SplashService } from './splash.service';
   templateUrl: './splash.component.html',
   styleUrls: ['./splash.component.scss'],
 })
-/** First page to display when the app is load. */
-export class SplashComponent implements OnDestroy, AfterViewInit {
+export class SplashComponent implements AfterViewInit, OnDestroy {
   @ViewChild('splash', { static: true })
   @Required()
   splashRef!: ElementRef;
-
-  @ViewChildren('loadImg')
-  loadImg!: QueryList<ElementRef>;
-
-  @ViewChildren('secondaryImg')
-  secondaryImgRef!: QueryList<ElementRef>;
 
   @ViewChild('primaryImg', { static: true })
   @Required()
@@ -39,19 +32,19 @@ export class SplashComponent implements OnDestroy, AfterViewInit {
   @Required()
   backgroundRef!: ElementRef;
 
-  /**
-   * @param splashService
-   */
+  @ViewChildren('loadImg')
+  loadImg!: QueryList<ElementRef>;
+
+  @ViewChildren('secondaryImg')
+  secondaryImgRef!: QueryList<ElementRef>;
+
   constructor(public splashService: SplashService) {}
 
-  /**
-   * @returns {void}.
-   */
   ngAfterViewInit(): void {
     const numberOfImagesBeingLoaded = this.loadImg.length;
     this.splashService.addElementsBeingLoaded(numberOfImagesBeingLoaded);
 
-    this.splashService.isLoadingComplete().subscribe(() => {
+    this.splashService.loadingStatus.subscribe(() => {
       this.primaryImgRef.nativeElement.style.opacity = '1';
       setTimeout(() => {
         this.secondaryImgRef.forEach(
@@ -67,8 +60,7 @@ export class SplashComponent implements OnDestroy, AfterViewInit {
     });
   }
 
-  /**
-   * @returns Void.
-   */
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    // TODO: unsubscribe
+  }
 }

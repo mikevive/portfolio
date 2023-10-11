@@ -7,13 +7,13 @@ import {
 } from '@angular/core';
 import { TreeService } from 'src/app/components/molecules/tree/tree.service';
 import { SplashService } from '../splash/splash.service';
+import { MainService } from './main.service';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
-/** TODO: Comment */
 export class MainComponent implements OnInit, AfterViewInit {
   @ViewChild('parallaxWrapper', { static: true }) parallaxWrapper!: ElementRef;
   @ViewChild('parallaxGroup', { static: true }) parallaxGroup!: ElementRef;
@@ -21,26 +21,20 @@ export class MainComponent implements OnInit, AfterViewInit {
   private INNER_HEIGHT = window.innerHeight;
 
   articlesHeight: number[] = [];
-  startScrollTop: number = 0;
-  startScrollTime: number = Date.now();
 
   isLoadingComplete: boolean = false;
 
-  /**
-   * @param treeService
-   * @param splashService
-   */
   constructor(
-    private treeService: TreeService,
-    private splashService: SplashService
+    private splashService: SplashService,
+    private mainService: MainService,
+    private treeService: TreeService
   ) {}
 
-  /**
-   * @returns Void.
-   */
   ngOnInit(): void {
     this.addArticle(2);
-    this.addArticle(1);
+    this.addArticle(2);
+    this.addArticle(2);
+    this.addArticle(2);
     this.addArticle(2);
     const height = this.getArticlesHeight();
     this.parallaxGroup.nativeElement.style.height = `${height}px`;
@@ -48,64 +42,27 @@ export class MainComponent implements OnInit, AfterViewInit {
       this.restrictArea(index + 1, articleHeight);
     });
 
-    this.parallaxWrapper.nativeElement.addEventListener(
-      'scroll',
-      this.scrollListener.bind(this)
-    );
+    this.parallaxWrapper.nativeElement.addEventListener('scroll', () => {
+      this.mainService.scrollY = this.parallaxWrapper.nativeElement.scrollTop;
+    });
 
     window.addEventListener('resize', () => {
       this.INNER_HEIGHT = window.innerHeight;
       this.parallaxGroup.nativeElement;
       this.updateArticleHeight(1, 2);
-      this.updateArticleHeight(2, 1);
+      this.updateArticleHeight(2, 2);
       this.updateArticleHeight(3, 2);
+      this.updateArticleHeight(4, 2);
+      this.updateArticleHeight(5, 2);
       const height = this.getArticlesHeight();
       this.parallaxGroup.nativeElement.style.height = `${height}px`;
     });
   }
 
-  /**
-   * @returns Void.
-   */
-  scrollListener(): void {
-    const userAgent = navigator.userAgent;
-    if (
-      !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(
-        userAgent
-      )
-    ) {
-      const currentTime = Date.now();
-      if (currentTime - this.startScrollTime < 20) return;
-
-      this.startScrollTime = currentTime;
-      const endScrollTop = this.parallaxWrapper.nativeElement.scrollTop;
-      const scrollDifference = this.startScrollTop - endScrollTop;
-
-      this.treeService.setMotionBlur(scrollDifference);
-
-      this.startScrollTop = endScrollTop;
-      this.startScrollTime = Date.now();
-
-      setTimeout(() => {
-        const currentTime = Date.now();
-        const timeDifference = currentTime - this.startScrollTime;
-        if (timeDifference >= 40) this.treeService.setMotionBlur(0);
-      }, 40);
-    }
-  }
-
-  /**
-   * @param  {number} scaleY
-   * @returns Void.
-   */
   addArticle(scaleY: number): void {
     this.articlesHeight.push((this.INNER_HEIGHT * scaleY) / 2);
   }
 
-  /**
-   * @param  {number=this.articlesHeight.length} position
-   * @returns Number.
-   */
   getArticlesHeight(position: number = this.articlesHeight.length): number {
     const articlesHeight = this.articlesHeight.slice(0, position);
     return articlesHeight.reduce(
@@ -114,28 +71,14 @@ export class MainComponent implements OnInit, AfterViewInit {
     );
   }
 
-  /**
-   * @param  {number} position
-   * @returns Number.
-   */
   getArticleHeight(position: number): number {
     return this.articlesHeight[position - 1];
   }
 
-  /**
-   * @param  {number} position
-   * @param  {number} scaleY
-   * @returns Void.
-   */
   updateArticleHeight(position: number, scaleY: number): void {
     this.articlesHeight[position - 1] = (this.INNER_HEIGHT * scaleY) / 2;
   }
 
-  /**
-   * @param  {number} articlePosition
-   * @param  {number} articleHeight
-   * @returns Void.
-   */
   restrictArea(articlePosition: number, articleHeight: number): void {
     const articleHeightPx = articleHeight;
     const articlesHeightPx: number = this.getArticlesHeight(articlePosition);
@@ -156,7 +99,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.splashService.isLoadingComplete().subscribe(() => {
+    this.splashService.loadingStatus.subscribe(() => {
       setTimeout(() => {
         console.log('animation');
         this.isLoadingComplete = true;

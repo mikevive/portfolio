@@ -1,5 +1,3 @@
-/**
- */
 export function Required(): Function {
   return function (targetClass: Object, propertyKey: string) {
     let value: string = targetClass[propertyKey];

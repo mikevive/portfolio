@@ -10,20 +10,65 @@ $quote: $base;
   align-items: center;
 }
 
-.blur {
-  opacity: 0.4;
+.circle-1 {
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  position: absolute;
+  opacity: 0.8;
+  animation: 6s ease-in-out 6s 1 forwards moveleft;
+}
+
+.circle-2 {
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  position: absolute;
+  opacity: 0.9;
+}
+
+.circle-3 {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  animation: 6s ease-in-out 6s 1 forwards moveright;
 }
 
 .quote {
   position: absolute;
-  z-index: $quote;
   width: 70%;
   pointer-events: all;
   text-align: center;
+  animation: 6s ease-in-out 6s 1 forwards moveleft;
+}
+
+.text {
+  background-image: url("/assets/img/text-clip.jpeg");
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes moveleft {
+  0% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(-150px);
+  }
+}
+
+@keyframes moveright {
+  0% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(150px);
+  }
 }
 
 .title {
-  font-family: 'Chomsky';
+  font-family: $primary-font-family;
 }
 
 /* Portrait */

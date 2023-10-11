@@ -1,7 +1,8 @@
-<div class="parallax-wrapper" [ngClass]="{'parallax-wrapper--animation': isLoadingComplete}" #parallaxWrapper>
-
+<div
+  class="parallax-wrapper"
+  [ngClass]="{ 'parallax-wrapper--animation': isLoadingComplete }"
+  #parallaxWrapper>
   <div class="parallax-group" #parallaxGroup>
-
     <div class="parallax-layer base-layer">
       <app-tree [position]="'base'"></app-tree>
       <app-tree [position]="'base'"></app-tree>
@@ -30,15 +31,23 @@
 
     <div class="parallax-layer top-layer">
       <section>
-        <article [ngStyle]="{'height.px': getArticleHeight(1)}">
+        <article [ngStyle]="{ 'height.px': getArticleHeight(1) }">
           <app-presentation></app-presentation>
           <div class="indicator"></div>
         </article>
-        <article [ngStyle]="{'height.px': getArticleHeight(2)}">
+        <article [ngStyle]="{ 'height.px': getArticleHeight(2) }">
           <app-quote></app-quote>
           <div class="indicator"></div>
         </article>
-        <article [ngStyle]="{'height.px': getArticleHeight(3)}">
+        <article [ngStyle]="{ 'height.px': getArticleHeight(3) }">
+          <app-projects></app-projects>
+          <div class="indicator"></div>
+        </article>
+        <article [ngStyle]="{ 'height.px': getArticleHeight(4) }">
+          <app-projects></app-projects>
+          <div class="indicator"></div>
+        </article>
+        <article [ngStyle]="{ 'height.px': getArticleHeight(5) }">
           <app-projects></app-projects>
           <div class="indicator"></div>
         </article>
@@ -54,9 +63,6 @@
       <app-tree [position]="'top'"></app-tree>
       <app-tree [position]="'top'"></app-tree>
       <app-tree [position]="'top'"></app-tree>
-
     </div>
-
   </div>
-
 </div>

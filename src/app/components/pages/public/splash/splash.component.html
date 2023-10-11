@@ -1,14 +1,39 @@
 <div class="splash" #splash>
-  <img class="old-texture" src="assets/img/old-texture.png" (load)="splashService.removeElementBeingLoaded()" #oldTexture #loadImg/>
+  <img
+    class="old-texture"
+    src="assets/img/old-texture.png"
+    (load)="splashService.removeElementBeingLoaded()"
+    #oldTexture
+    #loadImg />
   <div class="background" #background></div>
   <div class="loading-container">
     <div class="loading-circle">
       <!-- <div class="loading-inner-circle"></div>
       <p class="loading-text t1-24">loading<br/>reality</p> -->
     </div>
-    <img class="leaves-two" src="assets/img/collages/leaves-two.png" (load)="splashService.removeElementBeingLoaded()" #secondaryImg #loadImg/>
-    <img class="lake" src="assets/img/collages/lake.png" (load)="splashService.removeElementBeingLoaded()" #primaryImg #loadImg/>
-    <img class="bird" src="assets/img/collages/bird.png" (load)="splashService.removeElementBeingLoaded()" #secondaryImg #loadImg/>
-    <img class="leaves" src="assets/img/collages/leaves.png" (load)="splashService.removeElementBeingLoaded()" #secondaryImg #loadImg/>
+    <img
+      class="leaves-two"
+      src="assets/img/collages/leaves-two.png"
+      (load)="splashService.removeElementBeingLoaded()"
+      #secondaryImg
+      #loadImg />
+    <img
+      class="lake"
+      src="assets/img/collages/lake.png"
+      (load)="splashService.removeElementBeingLoaded()"
+      #primaryImg
+      #loadImg />
+    <img
+      class="bird"
+      src="assets/img/collages/bird.png"
+      (load)="splashService.removeElementBeingLoaded()"
+      #secondaryImg
+      #loadImg />
+    <img
+      class="leaves"
+      src="assets/img/collages/leaves.png"
+      (load)="splashService.removeElementBeingLoaded()"
+      #secondaryImg
+      #loadImg />
   </div>
 </div>

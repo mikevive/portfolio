@@ -17,7 +17,6 @@ import { TreeService } from './tree.service';
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
 })
-/** TODO: Comment */
 export class TreeComponent implements OnInit, AfterViewInit {
   @ViewChildren('loadImg')
   loadImg!: QueryList<ElementRef>;
@@ -52,26 +51,12 @@ export class TreeComponent implements OnInit, AfterViewInit {
     top: 0.3,
   };
 
-  private static BUBBLE_BLUR_TRANSLATIONS: any = {
-    base: 6,
-    mid: 4,
-    top: 2,
-  };
-
-  /**
-   * @param {ElementRef} elementRef
-   * @param  {TreeService} treeService
-   * @param splashService
-   */
   constructor(
     private elementRef: ElementRef,
     private treeService: TreeService,
     public splashService: SplashService
   ) {}
 
-  /**
-   * @returns Void.
-   */
   ngOnInit(): void {
     const parentRef = this.elementRef.nativeElement.parentElement;
     const parentWidth: number = parentRef.clientWidth;
@@ -92,9 +77,6 @@ export class TreeComponent implements OnInit, AfterViewInit {
       this.topMax = this.top + 10;
       this.topMin = this.top - 10;
     } while (!isRegister);
-
-    const blurTranslation =
-      TreeComponent.BUBBLE_BLUR_TRANSLATIONS[this.position];
 
     const conatinerElement = this.absoluteContainerRef.nativeElement;
 
@@ -117,7 +99,7 @@ export class TreeComponent implements OnInit, AfterViewInit {
     const interval = Math.floor(Math.random() * 10) + 100;
 
     setInterval(() => {
-      const conatinerElement = this.absoluteContainerRef.nativeElement;
+      const containerElement = this.absoluteContainerRef.nativeElement;
       if (this.direction === 'UP') {
         this.top = this.top! + 1;
         if (this.top >= this.topMax!) this.direction = 'DOWN';
@@ -125,7 +107,7 @@ export class TreeComponent implements OnInit, AfterViewInit {
         this.top = this.top! - 1;
         if (this.top <= this.topMin!) this.direction = 'UP';
       }
-      conatinerElement.style.top = `${this.top}px`;
+      containerElement.style.top = `${this.top}px`;
     }, interval);
   }
 

@@ -30,7 +30,8 @@
             "styles": [
               "src/styles.scss",
               "src/assets/typographies/cheltenham/stylesheet.css",
-              "src/assets/typographies/chomsky/stylesheet.css"
+              "src/assets/typographies/chomsky/stylesheet.css",
+              "src/assets/typographies/futura/stylesheet.css"
             ],
             "scripts": []
           },

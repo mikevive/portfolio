@@ -14,7 +14,6 @@ import { SplashService } from './components/pages/public/splash/splash.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-/** TODO: Comment */
 export class AppComponent implements OnInit, AfterViewInit {
   @ViewChildren('loadImg')
   loadImg!: QueryList<ElementRef>;
@@ -23,18 +22,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   scratches: void[] = Array(7);
   isLoadingComplete: boolean = false;
 
-  /**
-   * @param elementRef
-   * @param splashService
-   */
   constructor(
     private elementRef: ElementRef,
     public splashService: SplashService
   ) {}
 
-  /**
-   * @returns Void.
-   */
   ngOnInit(): void {
     // TODO: Change getElementsByClassName to ViewChildren
     const noiseElements =
@@ -71,7 +63,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     const numberOfImagesBeingLoaded = this.loadImg.length;
     this.splashService.addElementsBeingLoaded(numberOfImagesBeingLoaded);
 
-    this.splashService.isLoadingComplete().subscribe(() => {
+    this.splashService.loadingStatus.subscribe(() => {
       setTimeout(() => {
         this.isLoadingComplete = true;
       }, 3400);

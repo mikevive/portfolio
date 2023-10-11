@@ -14,7 +14,6 @@ import { SplashService } from '../../pages/public/splash/splash.service';
   templateUrl: './presentation.component.html',
   styleUrls: ['./presentation.component.scss'],
 })
-/** TODO: Comment */
 export class PresentationComponent implements AfterViewInit {
   @ViewChildren('loadImg')
   loadImg!: QueryList<ElementRef>;
